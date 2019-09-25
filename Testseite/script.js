@@ -1,35 +1,31 @@
 // script.js
 
 var canvas = document.getElementById('canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+var aspectRatio = 16/9;
+var context;
 
-var context = canvas.getContext("2d");
-if (canvas.getContext) {
-	var img = document.getElementById('drache');
-	img.onload = function() {
-		context.drawImage(img, 0, 0, canvas.width, canvas.height);
-		context.drawImage(img, 100, 100, canvas.width/10, canvas.height/10);
-	}
+var img = new Image();
+img.onload = function() {
+	context = canvas.getContext("2d");
+	resizeCanvas();
+	draw();
 
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);
 }
+img.src = "lego.png";
+
+function draw() {
+	context.drawImage(img, 0, 0, canvas.width, canvas.height);
+	context.drawImage(img, 0.1*canvas.width, 0.1*canvas.height, 0.1*canvas.width, 0.1*canvas.height);
+}
+
 
 function resizeCanvas() {
-	// Set up temporary canvas
-	var tempCanvas = document.createElement('canvas');
-	tempCanvas.width = canvas.width;
-	tempCanvas.height = canvas.height;
-	var tempContext = tempCanvas.getContext('2d');
-
-	// Copy to temporary canvas
-	tempContext.drawImage(canvas, 0, 0);
-  
-	// Resize original canvas
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
- 
-	// Copy back to resized canvas
-	context.drawImage(tempCanvas, 0, 0, tempCanvas.width, tempCanvas.height, 0, 0, canvas.width, canvas.height);
+	var w = window.innerWidth;
+	if (w/aspectRatio > window.innerHeight)
+		w = window.innerHeight*aspectRatio;
+	canvas.width = w;
+	canvas.height = w/aspectRatio;
+	draw();
 }
