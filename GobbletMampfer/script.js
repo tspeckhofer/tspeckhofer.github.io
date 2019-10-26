@@ -6,7 +6,7 @@ var context;
 var aspectRatio = 5/3;
 var unit = 100;
 var Game = new GobbletGame();
-var gamemode = "cvc"; // "pvp" = player vs player, "pvc" = player vs computer, "cvc" = computer vs computer.
+var gamemode = "pvc"; // "pvp" = player vs player, "pvc" = player vs computer, "cvc" = computer vs computer.
 var bot1; // Other opponent in cvc mode.
 var bot2; // Opponent.
 var mousex = 0;
