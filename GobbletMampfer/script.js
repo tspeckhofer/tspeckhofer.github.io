@@ -62,11 +62,12 @@ function setEventListeners() {
 	window.addEventListener('click', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
+		alert("click event!");
 		Click();
 	})
 	window.addEventListener('touchend', function (e) {
-		mousex = e.pageX - canvas.getBoundingClientRect().left;
-		mousey = e.pageY - canvas.getBoundingClientRect().top;
+		mousex = e.touches[0].clientX; - canvas.getBoundingClientRect().left;
+		mousey = e.touches[0].clientY; - canvas.getBoundingClientRect().top;
 		Click();
 	})
 }
