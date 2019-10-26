@@ -66,11 +66,6 @@ function startGame() { // starts a game.
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
 		MouseMoving();
 	})
-	window.addEventListener('touchmove', function (e) {
-		mousex = e.pageX - canvas.getBoundingClientRect().left;
-		mousey = e.pageY - canvas.getBoundingClientRect().top;
-		MouseMoving();
-	})
 	window.addEventListener('touchend', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
@@ -313,6 +308,7 @@ function GobbletGame() { // a game.
 }
 
 function gameOver(winner) { // is called when the game is over.
+	draw();
 	if (winner == "orange")
 		alert("Das Spiel ist aus - Orange hat gewonnen!");
 	else if (winner == "blue")
