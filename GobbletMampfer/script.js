@@ -29,57 +29,32 @@ blue.src = "images/gobblet_blue.png";
 selection.src = "images/selection.png";
 square.src = "images/square.png";
 
-function resizeCanvas() {
-	var w = window.innerWidth;
-	if (w/aspectRatio > window.innerHeight)
-		w = window.innerHeight*aspectRatio;
-	canvas.width = w;
-	canvas.height = w/aspectRatio;
-	u = w/5; // unit length
-	draw();
-}
-
-function draw() {
-	context.fillStyle = "rgb(64,64,64)";
-	context.fillRect(0, 0, canvas.width, canvas.height);
-	for (let i=0; i<3; i++) // Draw board with Gobblets.
-		for (let j=0; j<3; j++)
-		{
-			context.drawImage(square, (i+1)*u, j*u, u, u);
-			if (Game.board[i][j].length > 0)
-			{
-				let gobblet = last(Game.board[i][j]);
-				if (gobblet.color == "orange")
-					drawImageWithOffset(orange, (i+1)*u, j*u, (0.4 + gobblet.size*0.25)*u);
-				if (gobblet.color == "blue")
-					drawImageWithOffset(blue, (i+1)*u, j*u, (0.4 + gobblet.size*0.25)*u);
-			}
-		}
-	for (let i=0; i<3; i++) // Draw unused blue Gobblets.
-		if (Game.unused_blue[i] > 0)
-		{
-			drawImageWithOffset(blue, 0, (2-i)*u, (0.4+i*0.25)*u);
-			context.font = "20px Arial";
-			context.fillStyle = "white";
-			context.fillText(Game.unused_blue[i] + " x", 0.1*u, (2-i+0.1)*u);
-		}
-	for (let i=0; i<3; i++) // Draw unused orange Gobblets.
-		if (Game.unused_orange[i] > 0)
-		{
-			drawImageWithOffset(orange, 4*u, (2-i)*u, (0.4+i*0.25)*u);
-			context.font = "20px Arial";
-			context.fillStyle = "white";
-			context.fillText(Game.unused_orange[i] + " x", (4+0.1)*u, (2-i+0.1)*u);
-		}
-	if (field1_selected == true)
-		drawImageWithOffset(selection, selection1_x*u, selection1_y*u, u);
-}
-
-function drawImageWithOffset(img, x, y, size) { // Draw image with size (size, size) centered in the square of side length u with left upper corner (x,y).
+function drawImageWithOffset(img, x, y, size) { // draws an image with size (size, size) centered in the square of side length u with left upper corner (x,y).
 	context.drawImage(img, x+0.5*(u-size), y+0.5*(u-size), size, size);
 }
 
-function startGame() {
+function startGamePVC() {
+	gamemode = "pvc";
+	startGame();
+}
+
+function startGamePVP() {
+	gamemode = "pvp";
+	startGame();
+}
+
+function startGameCVC() {
+	gamemode = "cvc";
+	startGame();
+}
+
+function startGame() { // starts a game.
+	document.getElementById("title").style.display = "none";
+	document.getElementById("startButtonPVC").style.display = "none";
+	document.getElementById("startButtonPVP").style.display = "none";
+	document.getElementById("startButtonCVC").style.display = "none";
+	document.getElementById("canvas").style.display = "block";
+
 	context = canvas.getContext("2d");
 	
 	resizeCanvas();
@@ -111,12 +86,58 @@ function startGame() {
 		}
 }
 
-function Gobblet(color, size) {
+function resizeCanvas() { // resizes the canvas.
+	var w = window.innerWidth;
+	if (w/aspectRatio > window.innerHeight)
+		w = window.innerHeight*aspectRatio;
+	canvas.width = w;
+	canvas.height = w/aspectRatio;
+	u = w/5; // unit length
+	draw();
+}
+
+function draw() { // draws the Game on the canvas.
+	context.fillStyle = "rgb(32,32,32)";
+	context.fillRect(0, 0, canvas.width, canvas.height);
+	for (let i=0; i<3; i++) // Draw board with Gobblets.
+		for (let j=0; j<3; j++)
+		{
+			context.drawImage(square, (i+1)*u, j*u, u, u);
+			if (Game.board[i][j].length > 0)
+			{
+				let gobblet = last(Game.board[i][j]);
+				if (gobblet.color == "orange")
+					drawImageWithOffset(orange, (i+1)*u, j*u, (0.4 + gobblet.size*0.25)*u);
+				if (gobblet.color == "blue")
+					drawImageWithOffset(blue, (i+1)*u, j*u, (0.4 + gobblet.size*0.25)*u);
+			}
+		}
+	for (let i=0; i<3; i++) // Draw unused blue Gobblets.
+		if (Game.unused_blue[i] > 0)
+		{
+			drawImageWithOffset(blue, 0, (2-i)*u, (0.4+i*0.25)*u);
+			context.font = u/12 + "px Arial";
+			context.fillStyle = "white";
+			context.fillText(Game.unused_blue[i] + " x", 0.06*u, (2-i+0.12)*u);
+		}
+	for (let i=0; i<3; i++) // Draw unused orange Gobblets.
+		if (Game.unused_orange[i] > 0)
+		{
+			drawImageWithOffset(orange, 4*u, (2-i)*u, (0.4+i*0.25)*u);
+			context.font = u/12 + "px Arial";
+			context.fillStyle = "white";
+			context.fillText(Game.unused_orange[i] + " x", (4+0.06)*u, (2-i+0.12)*u);
+		}
+	if (field1_selected == true)
+		drawImageWithOffset(selection, selection1_x*u, selection1_y*u, u);
+}
+
+function Gobblet(color, size) { // a Gobblet.
 	this.color = color; // this.color = "orange" or "blue".
 	this.size = size; // 0 = small, 1 = middle, 2 = big.
 }
 
-function GobbletGame() {
+function GobbletGame() { // a game.
 	this.current_player_color = "orange";
 	this.board = new Array(3); // rows
 	for (let i=0; i<3; i++)
@@ -171,7 +192,7 @@ function GobbletGame() {
 			return "none";
 		}
 	}
-	this.winner = function() {
+	this.winner = function() { // determines if "orange", "blue", "both" or "none" of the players has won.
 		let orange_won = false;
 		let blue_won = false;
 		for (let k=0; k<8; k++)
@@ -281,7 +302,7 @@ function GobbletGame() {
 	
 }
 
-function gameOver(winner) {
+function gameOver(winner) { // is called when the game is over.
 	if (winner == "orange")
 		alert("Das Spiel ist aus - Orange hat gewonnen!");
 	else if (winner == "blue")
@@ -307,14 +328,18 @@ function sleep(milliseconds) { // pauses the game for milliseconds milliseconds.
 	}
 }
 
-function MouseMoving() {
+function MouseMoving() { // is called when the mouse has been moved.
+	canvas.style.cursor='auto';
 	draw();
 	if (Game.current_player_color != player_color)
 		return;
 	if (field1_selected == false)
 	{
 		if (Game.getColor(mousex, mousey) == player_color)
+		{
 			drawImageWithOffset(selection, Math.floor(mousex/u)*u, Math.floor(mousey/u)*u, u);
+			canvas.style.cursor='pointer';
+		}
 	}
 	if (field1_selected == true)
 	{
@@ -326,25 +351,28 @@ function MouseMoving() {
 			return;
 		if (Game.board[i][j].length == 0)
 		{
+			canvas.style.cursor='pointer';
 			drawImageWithOffset(selection, (i+1)*u, j*u, u);
 			return;
 		}
 		if (selection1_x == 0 || selection1_x == 4)
 			if (last(Game.board[i][j]).size < 2 - selection1_y)
 			{
+				canvas.style.cursor='pointer';
 				drawImageWithOffset(selection, (i+1)*u, j*u, u);
 				return;
 			}
 		if (selection1_x > 0 && selection1_x < 4)
 			if (last(Game.board[i][j]).size < last(Game.board[selection1_x - 1][selection1_y]).size)
 			{
+				canvas.style.cursor='pointer';
 				drawImageWithOffset(selection, (i+1)*u, j*u, u);
 				return;
 			}
 	}
 }
 
-function Click() {
+function Click() { // is called when the left mouse button has been clicked.
 	if (Game.current_player_color != player_color)
 		return;
 	let x = Math.floor(mousex/u); // x-coordinate of the clicked square.
@@ -403,7 +431,7 @@ function Click() {
 	draw();
 }
 
-function ComputerMove(bot) {
+function ComputerMove(bot) { // the computer player "bot" makes a move.
 	let move = bot.calculateMove();
 	if (move.length == 4)
 	{
@@ -422,6 +450,17 @@ function ComputerMove(bot) {
 		gameOver(w);
 }
 
+//=============================================================================================================================================================
+// Bots:
+//
+// A bot is a function that provides a member function "this.calculateMove()" which has to return a valid (!) move (otherwise there will be an error message).
+// A move is an array of the form [size, i, j] (a Gobblet of size size is placed in the field (i,j)) or of the form [i1, j1, i2, j2] (the top Gobblet of the
+// field (i1,j1) is moved to the field (i2,j2)).
+//
+// A bot may use the function Game.copy() to create a copy (e. g., "game1") of the current game and try out different moves in this copy using the functions
+// game1.current_player_color(), game1.attemptPlace(...), game1.attemptMove(...), game1.winner() or game1.winningPosition(). The original Game must not be
+// changed.
+//=============================================================================================================================================================
 
 
 function StandardBot() {
