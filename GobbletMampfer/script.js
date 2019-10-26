@@ -35,30 +35,23 @@ function drawImageWithOffset(img, x, y, size) { // draws an image with size (siz
 
 function startGamePVC() {
 	gamemode = "pvc";
+	setEventListeners();
 	startGame();
 }
 
 function startGamePVP() {
 	gamemode = "pvp";
+	setEventListeners();
 	startGame();
 }
 
 function startGameCVC() {
 	gamemode = "cvc";
+	setEventListeners();
 	startGame();
 }
 
-function startGame() { // starts a game.
-	document.getElementById("title").style.display = "none";
-	document.getElementById("startButtonPVC").style.display = "none";
-	document.getElementById("startButtonPVP").style.display = "none";
-	document.getElementById("startButtonCVC").style.display = "none";
-	document.getElementById("canvas").style.display = "block";
-
-	context = canvas.getContext("2d");
-	
-	resizeCanvas();
-
+function setEventListeners() {
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);
 	window.addEventListener('mousemove', function (e) {
@@ -76,6 +69,18 @@ function startGame() { // starts a game.
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
 		Click();
 	})
+}
+
+function startGame() { // starts a game.
+	document.getElementById("title").style.display = "none";
+	document.getElementById("startButtonPVC").style.display = "none";
+	document.getElementById("startButtonPVP").style.display = "none";
+	document.getElementById("startButtonCVC").style.display = "none";
+	document.getElementById("canvas").style.display = "block";
+
+	context = canvas.getContext("2d");
+	
+	resizeCanvas();
 
 	bot1 = new StandardBot(); // Other opponent in cvc mode.
 	bot2 = new StandardBot(); // Opponent.
