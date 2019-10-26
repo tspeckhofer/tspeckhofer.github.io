@@ -64,11 +64,6 @@ function setEventListeners() {
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
 		Click();
 	})
-	window.addEventListener('touchstart', function (e) {
-		mousex = e.touches[0].clientX - canvas.getBoundingClientRect().left;
-		mousey = e.touches[0].clientY - canvas.getBoundingClientRect().top;
-		Click();
-	})
 }
 
 function startGame() { // starts a game.
