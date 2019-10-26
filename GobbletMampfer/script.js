@@ -66,6 +66,11 @@ function startGame() { // starts a game.
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
 		MouseMoving();
 	})
+	window.addEventListener('touchmove', function (e) {
+		mousex = e.pageX - canvas.getBoundingClientRect().left;
+		mousey = e.pageY - canvas.getBoundingClientRect().top;
+		MouseMoving();
+	})
 	window.addEventListener('touchend', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
