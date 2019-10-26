@@ -61,7 +61,7 @@ function startGame() { // starts a game.
 
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);
-	window.addEventListener('touchmove', function (e) {
+	window.addEventListener('mousemove', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
 		MouseMoving();
@@ -69,12 +69,7 @@ function startGame() { // starts a game.
 	window.addEventListener('touchend', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
-		MouseMoving();
-	})
-	window.addEventListener('mousemove', function (e) {
-		mousex = e.pageX - canvas.getBoundingClientRect().left;
-		mousey = e.pageY - canvas.getBoundingClientRect().top;
-		MouseMoving();
+		Click();
 	})
 
 	bot1 = new StandardBot(); // Other opponent in cvc mode.
