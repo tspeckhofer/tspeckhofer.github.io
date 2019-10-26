@@ -61,6 +61,7 @@ function startGame() { // starts a game.
 
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);
+	window.addEventListener('touchend', Click, false)
 	window.addEventListener('mousemove', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
