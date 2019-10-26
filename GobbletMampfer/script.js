@@ -392,21 +392,22 @@ function Click() {
 	}
 	else if (field1_selected == true && (x > 0 && x < 4)) // select second field.
 	{
+		let success = false;
 		if (selection1_x > 0 && selection1_x < 4)
-		{
-			if (Game.attemptMove(selection1_x-1, selection1_y, x-1, y) == true)
-				field1_selected = false;
-		}
-		else if (Game.attemptPlace(2-selection1_y, x-1, y) == true)
-		{
+			success = Game.attemptMove(selection1_x-1, selection1_y, x-1, y);
+		else
+			success = Game.attemptPlace(2-selection1_y, x-1, y);
+		if (success == true)
 			field1_selected = false;
-		}
 		draw();
+		if (success == true)
+		{
 		let w = Game.winner();
-		if (w != "none")
-			gameOver(w);
-		else if (gamemode == "pvc")
-			setTimeout(function(){ ComputerMove(bot2); }, 400);
+			if (w != "none")
+				gameOver(w);
+			else if (gamemode == "pvc")
+				setTimeout(function(){ ComputerMove(bot2); }, 400);
+		}
 	}
 	else // reset selection.
 		field1_selected = false;
