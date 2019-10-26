@@ -49,7 +49,7 @@ function startGameCVC() {
 }
 
 function startGame() { // starts a game.
-	alert("Hello2!");
+	alert("Hello! Hello!");
 	document.getElementById("title").style.display = "none";
 	document.getElementById("startButtonPVC").style.display = "none";
 	document.getElementById("startButtonPVP").style.display = "none";
