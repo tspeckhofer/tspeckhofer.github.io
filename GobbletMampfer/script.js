@@ -6,13 +6,13 @@ var context;
 var aspectRatio = 5/3;
 var unit = 100;
 var Game = new GobbletGame();
-var gamemode = "pvc"; // "pvp" = player vs player, "pvc" = player vs computer, "cvc" = computer vs computer.
+var gamemode = "cvc"; // "pvp" = player vs player, "pvc" = player vs computer, "cvc" = computer vs computer.
 var bot1; // Other opponent in cvc mode.
 var bot2; // Opponent.
 var mousex = 0;
 var mousey = 0;
 var player_color = "orange"; // color of the current non-computer player.
-var field1_selected = false; // true <=> the no-computer player has selected a starting field for the next move.
+var field1_selected = false; // true <=> the non-computer player has selected a starting field for the next move.
 var selection1_x; // x-coordinate of the first selected field.
 var selection1_y; // y-coordinate of the second selected field.
 var rows_columns_diags = [ [[0,0],[0,1],[0,2]], [[1,0],[1,1],[1,2]], [[2,0],[2,1],[2,2]],
@@ -101,27 +101,14 @@ function startGame() {
 
 	draw();
 	
-	switch(gamemode) {
-		case "pvp":
-		
-			break;
-		case "pvc":
-		
-			break;
-		case "cvc":
-			for (let t=0; t<1000; t++)
-				if (t%2 == 0)
-					setTimeout(function(){ ComputerMove(bot1); }, 1000);
-				else
-					setTimeout(function(){ ComputerMove(bot2); }, 1000);
-				if (Game.winner != "none")
-					break;
-			break;
-		default:
-			break;
-	}
-
-
+	if (gamemode == "cvc")
+		for (let t=0; t<1000; t++)
+		{
+			if (t%2 == 0)
+				setTimeout(function(){ ComputerMove(bot1); }, 1000);
+			else
+				setTimeout(function(){ ComputerMove(bot2); }, 1000);
+		}
 }
 
 function Gobblet(color, size) {
@@ -399,6 +386,8 @@ function Click() {
 			success = Game.attemptPlace(2-selection1_y, x-1, y);
 		if (success == true)
 			field1_selected = false;
+		if (selection1_x == x && selection1_y == y)
+			field1_selected = false;
 		draw();
 		if (success == true)
 		{
@@ -461,6 +450,35 @@ function StandardBot() {
 							else
 								game1 = Game.copy();
 						}
+
+
+		for (let n=0; n<15; n++) // Search a random move such that the other player is not in a winning position afterwards.
+		{
+			let size = Math.floor(Math.random()*3);
+			let i = Math.floor(Math.random()*3);
+			let j = Math.floor(Math.random()*3);
+			if (game1.attemptPlace(size, i, j) == true)
+			{
+				if (game1.winningPosition() == false)
+					return [size, i, j];
+				else
+					game1 = Game.copy();
+			}
+		}
+		for (let n=0; n<15; n++)
+		{
+			let i1 = Math.floor(Math.random()*3);
+			let i2 = Math.floor(Math.random()*3);
+			let j1 = Math.floor(Math.random()*3);
+			let j2 = Math.floor(Math.random()*3);
+			if (game1.attemptMove(i1, j1, i2, j2) == true)
+			{
+				if (game1.winningPosition() == false)
+					return [i1, j1, i2, j2];
+				else
+					game1 = Game.copy();
+			}
+		}
 
 		for (let size = 2; size>=0; size--) // Search a move such that the other player is not in a winning position afterwards.
 			for (let i=0; i<3; i++)
