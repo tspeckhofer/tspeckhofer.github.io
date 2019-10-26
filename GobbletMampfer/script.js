@@ -49,7 +49,7 @@ function startGameCVC() {
 }
 
 function startGame() { // starts a game.
-	alert("Hello! Hello!");
+	alert("Hello! Hello! Hello!");
 	document.getElementById("title").style.display = "none";
 	document.getElementById("startButtonPVC").style.display = "none";
 	document.getElementById("startButtonPVP").style.display = "none";
@@ -70,6 +70,7 @@ function startGame() { // starts a game.
 	window.addEventListener('touchend', function (e) {
 		mousex = e.pageX - canvas.getBoundingClientRect().left;
 		mousey = e.pageY - canvas.getBoundingClientRect().top;
+		alert("touchend");
 		Click();
 	})
 
