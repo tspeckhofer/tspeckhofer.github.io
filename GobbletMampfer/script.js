@@ -65,8 +65,8 @@ function setEventListeners() {
 		Click();
 	})
 	window.addEventListener('touchstart', function (e) {
-		mousex = e.touches[0].clientX; - canvas.getBoundingClientRect().left;
-		mousey = e.touches[0].clientY; - canvas.getBoundingClientRect().top;
+		mousex = e.touches[0].clientX - canvas.getBoundingClientRect().left;
+		mousey = e.touches[0].clientY - canvas.getBoundingClientRect().top;
 		Click();
 	})
 }
