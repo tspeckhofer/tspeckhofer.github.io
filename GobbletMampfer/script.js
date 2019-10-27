@@ -33,6 +33,25 @@ function drawImageWithOffset(img, x, y, size) { // draws an image with size (siz
 	context.drawImage(img, x+0.5*(u-size), y+0.5*(u-size), size, size);
 }
 
+function rules() {
+	alert("Das Spiel 'Gobblet Mampfer' besteht aus einem 3x3-Spielbrett und 12 Gobblets (das sind auf dem Kopf stehende Becher - in dieser virtuellen Version aus der "
+			+"Vogelperspektive als Kreise dargestellt). In jeder Spielerfarbe (orange und blau) gibt es in jeder von drei unterschiedlichen Größen jeweils zwei Gobblets.\n\n"
+			+"Ziel des Spiels ist es, drei Gobblets der eigenen Farbe in einer Reihe, Spalte oder Diagonalen zu platzieren. Orange beginnt, dann sind Blau und Orange abwechselnd "
+			+"am Zug. In jedem Spielzug muss genau eine der folgenden zwei Aktionen ausgeführt werden:\n\n"
+			+"1.) Ein Gobblet der eigenen Farbe wird auf einem Feld platziert, das entweder leer ist oder einen Gobblet beliebiger Farbe, aber kleinerer Größe an oberster Position enthält. "
+			+"Wenn sich dort bereits ein anderer Gobblet befindet, so wird der neue Gobblet über den alten gestellt, sodass der alte Gobblet, der sich nun im neuen Gobblet befindet, "
+			+"verdeckt ist.\n\n"
+			+"2.) Ein Gobblet der eigenen Farbe, der nicht verdeckt ist, wird auf ein von seinem Ausgangsfeld verschiedenes Feld bewegt, das entweder leer ist oder einen kleineren "
+			+"Gobblet beliebiger Farbe an oberster Position enthält (dann wird analog zur ersten Aktion der neue über den alten Gobblet gestellt).\n\n"
+			+"Wenn sich nach einem solchen Zug drei gleichfarbige, nicht verdeckte Gobblets in einer Reihe, Spalte oder Diagonalen des Spielbretts befinden, so hat der Spieler, "
+			+"von dessen Farbe die Gobblets sind, gewonnen, und das Spiel endet. Falls sich jedoch von beiden Farben jeweils drei Gobblets in einer Linie befinden, so endet das "
+			+"Spiel mit einem 'Unentschieden'.\n\n"
+			+"Im Spielmodus 'PvC' wird mit der Maus durch Klicken ein Gobblet ausgewählt und durch erneutes Klicken das Feld, auf das der Gobblet gesetzt werden soll. Durch erneutes "
+			+"Klicken auf den Gobblet oder auf einen Bereich außerhalb der neun weißen Felder wird die Auswahl des Gobblets wieder aufgehoben. Die Farbe Blau wird vom Computer gespielt. "
+			+"Im Modus 'PvP' werden beide Farben mit der Maus gesteuert. Im Modus 'CvC' werden im Schnelldurchlauf Spiele durchgeführt, in denen der Computer gegen den Computer spielt. "
+			+"Durch neues Laden der Seite (z. B. Drücken von F5) kann ein anderer Spielmodus ausgewählt werden.")
+}
+
 function startGamePVC() {
 	gamemode = "pvc";
 	setEventListeners();
@@ -71,6 +90,7 @@ function startGame() { // starts a game.
 	document.getElementById("startButtonPVC").style.display = "none";
 	document.getElementById("startButtonPVP").style.display = "none";
 	document.getElementById("startButtonCVC").style.display = "none";
+	document.getElementById("buttonRules").style.display = "none";
 	document.getElementById("canvas").style.display = "block";
 
 	context = canvas.getContext("2d");
