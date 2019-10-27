@@ -35,7 +35,7 @@ function drawImageWithOffset(img, x, y, size) { // draws an image with size (siz
 
 function rules() {
 	alert("Das Spiel 'Gobblet Mampfer' besteht aus einem 3x3-Spielbrett und 12 Gobblets (das sind auf dem Kopf stehende Becher - in dieser virtuellen Version aus der "
-			+"Vogelperspektive als Kreise dargestellt). In jeder Spielerfarbe (orange und blau) gibt es in jeder von drei unterschiedlichen Größen jeweils zwei Gobblets.\n\n"
+			+"Vogelperspektive als Kreisscheiben dargestellt). In jeder Spielerfarbe (orange und blau) gibt es in jeder von drei unterschiedlichen Größen jeweils zwei Gobblets.\n\n"
 			+"Ziel des Spiels ist es, drei Gobblets der eigenen Farbe in einer Reihe, Spalte oder Diagonalen zu platzieren. Orange beginnt, dann sind Blau und Orange abwechselnd "
 			+"am Zug. In jedem Spielzug muss genau eine der folgenden zwei Aktionen ausgeführt werden:\n\n"
 			+"1.) Ein Gobblet der eigenen Farbe wird auf einem Feld platziert, das entweder leer ist oder einen Gobblet beliebiger Farbe, aber kleinerer Größe an oberster Position enthält. "
