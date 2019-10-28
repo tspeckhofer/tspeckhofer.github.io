@@ -78,7 +78,7 @@ function setEventListeners() {
 		mousey = event.pageY - canvas.getBoundingClientRect().top;
 		MouseMoving();
 	})
-	window.addEventListener('click', function(event) {
+	canvas.addEventListener('click', function(event) {
 		mousex = event.pageX - canvas.getBoundingClientRect().left;
 		mousey = event.pageY - canvas.getBoundingClientRect().top;
 		Click();
