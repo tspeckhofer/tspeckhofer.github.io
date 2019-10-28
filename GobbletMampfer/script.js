@@ -13,6 +13,7 @@ var mousex = 0;
 var mousey = 0;
 var player_color = "orange"; // color of the current non-computer player.
 var field1_selected = false; // true <=> the non-computer player has selected a starting field for the next move.
+var newGameStarted = false; // indicates if a new game has been startet in cvc mode.
 var selection1_x; // x-coordinate of the first selected field.
 var selection1_y; // y-coordinate of the second selected field.
 var rows_columns_diags = [ [[0,0],[0,1],[0,2]], [[1,0],[1,1],[1,2]], [[2,0],[2,1],[2,2]],
@@ -55,19 +56,19 @@ function rules() {
 function startGamePVC() {
 	gamemode = "pvc";
 	setEventListeners();
-	startGame();
+	Init();
 }
 
 function startGamePVP() {
 	gamemode = "pvp";
 	setEventListeners();
-	startGame();
+	Init();
 }
 
 function startGameCVC() {
 	gamemode = "cvc";
 	setEventListeners();
-	startGame();
+	Init();
 }
 
 function setEventListeners() {
@@ -85,7 +86,7 @@ function setEventListeners() {
 	})	
 }
 
-function startGame() { // starts a game.
+function Init() { // initializes everything.
 	document.getElementById("title").style.display = "none";
 	document.getElementById("startButtonPVC").style.display = "none";
 	document.getElementById("startButtonPVP").style.display = "none";
@@ -97,6 +98,25 @@ function startGame() { // starts a game.
 	
 	resizeCanvas();
 
+	startGame();
+
+	if (gamemode == "cvc")
+	{
+		let t=1;
+		let handle = setInterval( function() {
+			if (t%2 == 0)
+				ComputerMove(bot1);
+			else
+				ComputerMove(bot2);
+			t++;
+		if (t>1000000000000) clearInterval(handle);
+		
+		}, 500 );
+	}
+}
+
+function startGame() { // starts a game.
+
 	bot1 = new StandardBot(); // Other opponent in cvc mode.
 	bot2 = new StandardBot(); // Opponent.
 
@@ -105,15 +125,6 @@ function startGame() { // starts a game.
 	Game = new GobbletGame();
 
 	draw();
-	
-	if (gamemode == "cvc")
-		for (let t=0; t<1000; t++)
-		{
-			if (t%2 == 0)
-				setTimeout(function(){ ComputerMove(bot1); }, 1000);
-			else
-				setTimeout(function(){ ComputerMove(bot2); }, 1000);
-		}
 }
 
 function resizeCanvas() { // resizes the canvas.
@@ -360,16 +371,9 @@ function last(array) { // returns last element of an array under the condition a
 		return false;
 }
 
-function sleep(milliseconds) { // pauses the game for milliseconds milliseconds.
-	var start = new Date().getTime();
-	for (var i = 0; i < 1e7; i++) {
-		if ((new Date().getTime() - start) > milliseconds){
-			break;
-		}
-	}
-}
-
 function MouseMoving() { // is called when the mouse has been moved.
+	if (gamemode == "cvc")
+		return;
 	canvas.style.cursor='auto';
 	draw();
 	if (Game.current_player_color != player_color)
@@ -414,6 +418,8 @@ function MouseMoving() { // is called when the mouse has been moved.
 }
 
 function Click() { // is called when the left mouse button has been clicked.
+	if (gamemode == "cvc")
+		return;
 	if (Game.current_player_color != player_color)
 		return;
 	let x = Math.floor(mousex/u); // x-coordinate of the clicked square.
