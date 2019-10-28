@@ -245,7 +245,7 @@ function GobbletGame() { // a game.
 			return "both";
 		return "none";
 	}
-	this.winningPosition = function() { // determines if the current player can win the game in the next move.
+	this.winningPosition = function(color) { // determines if the player with color color can win the game in the next move.
 		for (let k=0; k<8; k++)
 		{
 			line = rows_columns_diags[k];
@@ -256,11 +256,11 @@ function GobbletGame() { // a game.
 				if (this.board[line[i][0]][line[i][1]].length > 0)
 				{
 					let topGobblet = last(this.board[line[i][0]][line[i][1]]);
-					if (topGobblet.color == this.current_player_color)
+					if (topGobblet.color == color)
 						numOfOwnGobblets++;
-					if (topGobblet.color == this.current_player_color && topGobblet.size == 2)
+					if (topGobblet.color == color && topGobblet.size == 2)
 						numOfBigGobbletsUsed++;
-					if (topGobblet.color != this.current_player_color)
+					if (topGobblet.color != color)
 						biggestForeignGobbletSize = Math.max(biggestForeignGobbletSize, topGobblet.size);
 				}
 			if (biggestForeignGobbletSize == 2)
@@ -343,6 +343,14 @@ function gameOver(winner) { // is called when the game is over.
 		alert("Das Spiel ist aus - Unentschieden!");
 	startGame();
 	}, 200);
+}
+
+function otherColor(color) { // returns "blue" if color == "orange", "orange" if color == "blue", and "none" otherwise.
+	if (color == "orange")
+		return "blue";
+	if (color == "blue")
+		return "orange";
+	return "none";
 }
 
 function last(array) { // returns last element of an array under the condition array.length > 0, and false otherwise.
@@ -524,6 +532,28 @@ function StandardBot() {
 						}
 
 
+		for (let size = 2; size>=0; size--) // Search a move such that the other player is not in a winning position afterwards, whereas this player is.
+			for (let i=0; i<3; i++)
+				for (let j=0; j<3; j++)
+					if (game1.attemptPlace(size, i, j) == true)
+						{
+							if (game1.winningPosition(game1.current_player_color) == false && game1.winningPosition(otherColor(game1.current_player_color)) == true)
+								{return [size, i, j];alert("found");}
+							else
+								game1 = Game.copy();
+						}
+		for (let i1=0; i1<3; i1++)
+			for (let j1=0; j1<3; j1++)
+				for (let i2=0; i2<3; i2++)
+					for (let j2=0; j2<3; j2++)
+						if (game1.attemptMove(i1, j1, i2, j2) == true)
+						{
+							if (game1.winningPosition(game1.current_player_color) == false && game1.winningPosition(otherColor(game1.current_player_color)) == true)
+								return [i1, j1, i2, j2];
+							else
+								game1 = Game.copy();
+						}
+
 		for (let n=0; n<15; n++) // Search a random move such that the other player is not in a winning position afterwards.
 		{
 			let size = Math.floor(Math.random()*3);
@@ -531,7 +561,7 @@ function StandardBot() {
 			let j = Math.floor(Math.random()*3);
 			if (game1.attemptPlace(size, i, j) == true)
 			{
-				if (game1.winningPosition() == false)
+				if (game1.winningPosition(game1.current_player_color) == false)
 					return [size, i, j];
 				else
 					game1 = Game.copy();
@@ -545,7 +575,7 @@ function StandardBot() {
 			let j2 = Math.floor(Math.random()*3);
 			if (game1.attemptMove(i1, j1, i2, j2) == true)
 			{
-				if (game1.winningPosition() == false)
+				if (game1.winningPosition(game1.current_player_color) == false)
 					return [i1, j1, i2, j2];
 				else
 					game1 = Game.copy();
@@ -557,7 +587,7 @@ function StandardBot() {
 				for (let j=0; j<3; j++)
 					if (game1.attemptPlace(size, i, j) == true)
 						{
-							if (game1.winningPosition() == false)
+							if (game1.winningPosition(game1.current_player_color) == false)
 								return [size, i, j];
 							else
 								game1 = Game.copy();
@@ -568,7 +598,7 @@ function StandardBot() {
 					for (let j2=0; j2<3; j2++)
 						if (game1.attemptMove(i1, j1, i2, j2) == true)
 						{
-							if (game1.winningPosition() == false)
+							if (game1.winningPosition(game1.current_player_color) == false)
 								return [i1, j1, i2, j2];
 							else
 								game1 = Game.copy();
