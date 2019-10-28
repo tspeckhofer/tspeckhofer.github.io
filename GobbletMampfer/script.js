@@ -81,12 +81,14 @@ function setEventListeners() {
 	window.addEventListener('click', function(event) {
 		mousex = event.pageX - canvas.getBoundingClientRect().left;
 		mousey = event.pageY - canvas.getBoundingClientRect().top;
+		alert("Click event: " + mousex + ", " + mousey);
 		Click();
 	})
 	window.addEventListener('touchstart', function(event) {
 		event.preventDefault();
 		mousex = event.changedTouches[i].pageX- canvas.getBoundingClientRect().left;
 		mousey = event.changedTouches[i].pageY - canvas.getBoundingClientRect().top;
+		alert("Touchstart event: " + mousex + ", " + mousey);
 		Click();
 	})
 	
