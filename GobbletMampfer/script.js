@@ -73,16 +73,23 @@ function startGameCVC() {
 function setEventListeners() {
 	window.addEventListener('resize', resizeCanvas, false);
 	window.addEventListener('orientationchange', resizeCanvas, false);
-	window.addEventListener('mousemove', function (e) {
-		mousex = e.pageX - canvas.getBoundingClientRect().left;
-		mousey = e.pageY - canvas.getBoundingClientRect().top;
+	window.addEventListener('mousemove', function (event) {
+		mousex = event.pageX - canvas.getBoundingClientRect().left;
+		mousey = event.pageY - canvas.getBoundingClientRect().top;
 		MouseMoving();
 	})
-	window.addEventListener('click', function (e) {
-		mousex = e.pageX - canvas.getBoundingClientRect().left;
-		mousey = e.pageY - canvas.getBoundingClientRect().top;
+	window.addEventListener('click', function(event) {
+		mousex = event.pageX - canvas.getBoundingClientRect().left;
+		mousey = event.pageY - canvas.getBoundingClientRect().top;
 		Click();
 	})
+	window.addEventListener('touchend', function(event) {
+		event.preventDefault();
+		mousex = event.changedTouches[i].pageX- canvas.getBoundingClientRect().left;
+		mousey = event.changedTouches[i].pageY - canvas.getBoundingClientRect().top;
+		Click();
+	})
+	
 }
 
 function startGame() { // starts a game.
@@ -342,7 +349,7 @@ function gameOver(winner) { // is called when the game is over.
 	else if (winner == "both")
 		alert("Das Spiel ist aus - Unentschieden!");
 	startGame();
-	}, 100);
+	}, 200);
 }
 
 function last(array) { // returns last element of an array under the condition array.length > 0, and false otherwise.
