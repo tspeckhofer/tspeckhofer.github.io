@@ -334,13 +334,15 @@ function GobbletGame() { // a game.
 
 function gameOver(winner) { // is called when the game is over.
 	draw();
+	setTimeout(()=>{
 	if (winner == "orange")
 		alert("Das Spiel ist aus - Orange hat gewonnen!");
 	else if (winner == "blue")
-		alert("Das Spiel ist aus - Blau hat gewonnen!")
+		alert("Das Spiel ist aus - Blau hat gewonnen!");
 	else if (winner == "both")
-		alert("Das Spiel ist aus - Unentschieden!")
+		alert("Das Spiel ist aus - Unentschieden!");
 	startGame();
+	}, 100);
 }
 
 function last(array) { // returns last element of an array under the condition array.length > 0, and false otherwise.
