@@ -89,6 +89,7 @@ function setEventListeners() {
 
 function Init() { // initializes everything.
 	document.getElementById("title").style.display = "none";
+	document.getElementById("version").style.display = "none";
 	document.getElementById("startButtonPVC").style.display = "none";
 	document.getElementById("startButtonPVP").style.display = "none";
 	document.getElementById("startButtonCVC").style.display = "none";
