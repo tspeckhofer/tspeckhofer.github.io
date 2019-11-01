@@ -14,6 +14,7 @@ var mousey = 0;
 var player_color = "orange"; // color of the current non-computer player.
 var field1_selected = false; // true <=> the non-computer player has selected a starting field for the next move.
 var newGameStarted = false; // indicates if a new game has been startet in cvc mode.
+var cvcGameNotOver = true; // false if a cvc game is over.
 var selection1_x; // x-coordinate of the first selected field.
 var selection1_y; // y-coordinate of the second selected field.
 var rows_columns_diags = [ [[0,0],[0,1],[0,2]], [[1,0],[1,1],[1,2]], [[2,0],[2,1],[2,2]],
@@ -50,7 +51,7 @@ function rules() {
 			+"Im Spielmodus 'PvC' wird mit der Maus durch Klicken ein Gobblet ausgewählt und durch erneutes Klicken das Feld, auf das der Gobblet gesetzt werden soll. Durch erneutes "
 			+"Klicken auf den Gobblet oder auf einen Bereich außerhalb der neun weißen Felder wird die Auswahl des Gobblets wieder aufgehoben. Die Farbe Blau wird vom Computer gespielt. "
 			+"Im Modus 'PvP' werden beide Farben mit der Maus gesteuert. Im Modus 'CvC' werden im Schnelldurchlauf Spiele durchgeführt, in denen der Computer gegen den Computer spielt. "
-			+"Durch neues Laden der Seite (z. B. Drücken von F5) kann ein anderer Spielmodus ausgewählt werden.")
+			+"Im CvC-Modus entscheidet sich zufällig, wer beginnt. Durch neues Laden der Seite (z. B. Drücken von F5) kann in jedem Spielmodus das Spiel abgebrochen werden.")
 }
 
 function startGamePVC() {
@@ -104,13 +105,16 @@ function Init() { // initializes everything.
 	{
 		let t=1;
 		let handle = setInterval( function() {
-			if (t%2 == 0)
-				ComputerMove(bot1);
-			else
-				ComputerMove(bot2);
+			if (t > 1000000000000)
+				clearInterval(handle);
+			if (cvcGameNotOver == true)
+			{
+				if (t%2 == 0)
+					ComputerMove(bot1);
+				else
+					ComputerMove(bot2);
+			}
 			t++;
-		if (t>1000000000000) clearInterval(handle);
-		
 		}, 500 );
 	}
 }
@@ -262,7 +266,8 @@ function GobbletGame() { // a game.
 			line = rows_columns_diags[k];
 			let numOfOwnGobblets = 0;
 			let numOfBigGobbletsUsed = 0;
-			let biggestForeignGobbletSize = 0;
+			let biggestForeignGobbletSize = -1;
+			let biggestOwnAvailableGobbletSize = -1; // Size of the biggest Gobblet of the own color such that another Gobblet of the same color is directly under them.
 			for (let i=0; i<3; i++)
 				if (this.board[line[i][0]][line[i][1]].length > 0)
 				{
@@ -273,16 +278,42 @@ function GobbletGame() { // a game.
 						numOfBigGobbletsUsed++;
 					if (topGobblet.color != color)
 						biggestForeignGobbletSize = Math.max(biggestForeignGobbletSize, topGobblet.size);
+					if (this.board[line[i][0]][line[i][1]].length > 1)
+					{
+						let secondGobblet = this.board[line[i][0]][line[i][1]][this.board[line[i][0]][line[i][1]].length-2];
+						if (secondGobblet.color == color)
+							biggestOwnAvailableGobbletSize = Math.max(biggestOwnAvailableGobbletSize, secondGobblet.size);
+					}
 				}
 			if (biggestForeignGobbletSize == 2)
 				continue;
 			if (numOfOwnGobblets < 2)
 				continue;
-			if (numOfBigGobbletsUsed == 2 && biggestForeignGobbletSize == 1)
-				continue;	
+			if (biggestForeignGobbletSize < 0)
+				return true;
+			if (numOfBigGobbletsUsed == 2 && this.GobbletOfBiggerSizeAvailable(color, biggestForeignGobbletSize) == false && biggestOwnAvailableGobbletSize <= biggestForeignGobbletSize)
+				continue;
 			return true;
 		}
 		return false;
+	}
+	this.GobbletOfBiggerSizeAvailable = function(color, size) { // checks if a Gobblet of color color and size bigger than size is available (i. e., on top position of a field or still unused).
+		if (size == 2)
+			return false;
+		if (color == "orange")
+			for (let i=size+1; i<3; i++)
+				if (this.unused_orange[i] > 0)
+					return true;
+		if (color == "blue")
+			for (let i=size+1; i<3; i++)
+				if (this.unused_blue[i] > 0)
+					return true;
+		for (let i=0; i<3; i++)
+			for (let j=0; j<3; j++)
+				if (this.board[i][j].length > 0)
+					if (last(this.board[i][j]).color == color && last(this.board[i][j]).size > size)
+						return true;
+		return false; 
 	}
 	this.attemptPlace = function(size, x, y) { // places a Gobblet of the current player of size size at (x,y), if allowed.
 		if (this.board[x][y].length > 0)
@@ -345,13 +376,26 @@ function GobbletGame() { // a game.
 
 function gameOver(winner) { // is called when the game is over.
 	draw();
+	cvcGameNotOver = false;
 	setTimeout(()=>{
 	if (winner == "orange")
-		alert("Das Spiel ist aus - Orange hat gewonnen!");
+	{
+		if (confirm("Das Spiel ist aus - Orange hat gewonnen! Neues Spiel starten?") == false)
+			location.reload(false);
+		cvcGameNotOver = true;
+	}
 	else if (winner == "blue")
-		alert("Das Spiel ist aus - Blau hat gewonnen!");
+	{
+		if (confirm("Das Spiel ist aus - Blau hat gewonnen! Neues Spiel starten?") == false)
+			location.reload(false);
+		cvcGameNotOver = true;
+	}
 	else if (winner == "both")
-		alert("Das Spiel ist aus - Unentschieden!");
+	{
+		if (confirm("Das Spiel ist aus - Unentschieden! Neues Spiel starten?") == false)
+			location.reload(false);
+		cvcGameNotOver = true;
+	}
 	startGame();
 	}, 200);
 }
