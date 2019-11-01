@@ -51,7 +51,7 @@ function rules() {
 			+"Im Spielmodus 'PvC' wird mit der Maus durch Klicken ein Gobblet ausgewählt und durch erneutes Klicken das Feld, auf das der Gobblet gesetzt werden soll. Durch erneutes "
 			+"Klicken auf den Gobblet oder auf einen Bereich außerhalb der neun weißen Felder wird die Auswahl des Gobblets wieder aufgehoben. Die Farbe Blau wird vom Computer gespielt. "
 			+"Im Modus 'PvP' werden beide Farben mit der Maus gesteuert. Im Modus 'CvC' werden im Schnelldurchlauf Spiele durchgeführt, in denen der Computer gegen den Computer spielt. "
-			+"Im CvC-Modus entscheidet sich zufällig, wer beginnt. Durch neues Laden der Seite (z. B. Drücken von F5) kann in jedem Spielmodus das Spiel abgebrochen werden.")
+			+"Durch neues Laden der Seite (z. B. Drücken von F5) kann in jedem Spielmodus das aktuelle Spiel abgebrochen werden.")
 }
 
 function startGamePVC() {
@@ -556,19 +556,89 @@ function ComputerMove(bot) { // the computer player "bot" makes a move.
 
 
 function StandardBot() {
+
 	this.calculateMove = function() {
 
-		let game1 = Game.copy();
+		let thisbot = this;
 
-		for (let size = 2; size>=0; size--) // Search move that lets you win.
+		// Search move that lets you win:
+		let game1 = Game.copy();
+		let result = this.loopAllMoves(game1, Game, function(game1) { return game1.winner() == otherColor(game1.current_player_color); });
+		if (result != false)
+			return result;
+
+		// Try to find a move such that for all moves that can be made by the opponent afterwards, you will be in a winning position:
+		game1 = Game.copy();
+		result = this.loopAllMoves(game1, Game, function(game1) { // Loop through all possible moves you can make.
+			let game2 = game1.copy();
+			let result2 = thisbot.loopAllMoves(game2, game1, function(game2) { // Try to find a move by the opponent such that you will not be in a winning position.
+				if (game2.winner() == otherColor(Game.current_player_color))
+					return true;
+				return !game2.winningPosition(Game.current_player_color);
+			});
+			if (result2 == false)
+				return true;
+			else
+				return false;
+		});
+		if (result != false)
+		{
+			if (gamemode == "pvc")
+				alert("In der nächsten Runde wirst du verlieren!");
+			return result;
+		}
+
+		// Use simple algorithm:
+			return this.calculateMoveSimple(Game);
+	}
+	this.calculateMoveSimple = function(game) {
+
+		// Search move that lets you win:
+		let game1 = game.copy();
+		let result = this.loopAllMoves(game1, game, function(game1) { return game1.winner() == otherColor(game1.current_player_color); });
+		if (result != false)
+			return result;
+
+		// Search a move such that the other player is not in a winning position afterwards, whereas this player is:
+		game1 = game.copy();
+		result = this.loopAllMoves(game1, game, function(game1) { return game1.winningPosition(game1.current_player_color) == false && game1.winningPosition(otherColor(game1.current_player_color)) == true; });
+		if (result != false)
+			return result;
+
+		// Search a random move such that the other player is not in a winning position afterwards:
+		game1 = game.copy();
+		result = this.loopRandomMoves(15, game1, game, function(game1) {return game1.winningPosition(game1.current_player_color) == false;} );
+		if (result != false)
+			return result;
+
+		// Search a move such that the other player is not in a winning position afterwards:
+		game1 = game.copy();
+		result = this.loopAllMoves(game1, game, function(game1) { return game1.winningPosition(game1.current_player_color) == false; });
+		if (result != false)
+			return result;
+
+		// Search move that doesn't let you lose instantly, before the other player's move:
+		game1 = game.copy();
+		result = this.loopAllMoves(game1, game, function(game1) { return game1.winner() == "none"; });
+		if (result != false)
+			return result;
+
+		// Search a valid move:
+		game1 = game.copy();
+		result = this.loopAllMoves(game1, game, function(game1) { return true; });
+		if (result != false)
+			return result;
+	}
+	this.loopAllMoves = function(game1, game, condition) { // Loops through all possible moves and returns the first move such that condition == true, returns false if no move satisfies condition.
+		for (let size = 2; size>=0; size--)
 			for (let i=0; i<3; i++)
 				for (let j=0; j<3; j++)
 					if (game1.attemptPlace(size, i, j) == true)
 					{
-						if (game1.winner() == Game.current_player_color)
+						if (condition(game1))
 							return [size, i, j];
 						else
-							game1 = Game.copy();
+							game1 = game.copy();
 					}
 		for (let i1=0; i1<3; i1++)
 			for (let j1=0; j1<3; j1++)
@@ -576,49 +646,28 @@ function StandardBot() {
 					for (let j2=0; j2<3; j2++)
 						if (game1.attemptMove(i1, j1, i2, j2) == true)
 						{
-							if (game1.winner() == Game.current_player_color)
+							if (condition(game1))
 								return [i1, j1, i2, j2];
 							else
-								game1 = Game.copy();
+								game1 = game.copy();
 						}
-
-
-		for (let size = 2; size>=0; size--) // Search a move such that the other player is not in a winning position afterwards, whereas this player is.
-			for (let i=0; i<3; i++)
-				for (let j=0; j<3; j++)
-					if (game1.attemptPlace(size, i, j) == true)
-						{
-							if (game1.winningPosition(game1.current_player_color) == false && game1.winningPosition(otherColor(game1.current_player_color)) == true)
-								{return [size, i, j];alert("found");}
-							else
-								game1 = Game.copy();
-						}
-		for (let i1=0; i1<3; i1++)
-			for (let j1=0; j1<3; j1++)
-				for (let i2=0; i2<3; i2++)
-					for (let j2=0; j2<3; j2++)
-						if (game1.attemptMove(i1, j1, i2, j2) == true)
-						{
-							if (game1.winningPosition(game1.current_player_color) == false && game1.winningPosition(otherColor(game1.current_player_color)) == true)
-								return [i1, j1, i2, j2];
-							else
-								game1 = Game.copy();
-						}
-
-		for (let n=0; n<15; n++) // Search a random move such that the other player is not in a winning position afterwards.
+		return false;
+	}
+	this.loopRandomMoves = function(n, game1, game, condition) {
+		for (let k=0; k<n; k++) // Loops through n random moves and returns the first move such that condition == true, returns false if none of the moves satisfies condition.
 		{
 			let size = Math.floor(Math.random()*3);
 			let i = Math.floor(Math.random()*3);
 			let j = Math.floor(Math.random()*3);
 			if (game1.attemptPlace(size, i, j) == true)
 			{
-				if (game1.winningPosition(game1.current_player_color) == false)
+				if (condition(game1))
 					return [size, i, j];
 				else
-					game1 = Game.copy();
+					game1 = game.copy();
 			}
 		}
-		for (let n=0; n<15; n++)
+		for (let k=0; k<n; k++)
 		{
 			let i1 = Math.floor(Math.random()*3);
 			let i2 = Math.floor(Math.random()*3);
@@ -626,67 +675,12 @@ function StandardBot() {
 			let j2 = Math.floor(Math.random()*3);
 			if (game1.attemptMove(i1, j1, i2, j2) == true)
 			{
-				if (game1.winningPosition(game1.current_player_color) == false)
+				if (condition(game1))
 					return [i1, j1, i2, j2];
 				else
-					game1 = Game.copy();
+					game1 = game.copy();
 			}
 		}
-
-		for (let size = 2; size>=0; size--) // Search a move such that the other player is not in a winning position afterwards.
-			for (let i=0; i<3; i++)
-				for (let j=0; j<3; j++)
-					if (game1.attemptPlace(size, i, j) == true)
-						{
-							if (game1.winningPosition(game1.current_player_color) == false)
-								return [size, i, j];
-							else
-								game1 = Game.copy();
-						}
-		for (let i1=0; i1<3; i1++)
-			for (let j1=0; j1<3; j1++)
-				for (let i2=0; i2<3; i2++)
-					for (let j2=0; j2<3; j2++)
-						if (game1.attemptMove(i1, j1, i2, j2) == true)
-						{
-							if (game1.winningPosition(game1.current_player_color) == false)
-								return [i1, j1, i2, j2];
-							else
-								game1 = Game.copy();
-						}
-
-		for (let size = 2; size>=0; size--) // Search move that doesn't let you lose instantly, before the other player's move.
-			for (let i=0; i<3; i++)
-				for (let j=0; j<3; j++)
-					if (game1.attemptPlace(size, i, j) == true)
-					{
-						if (game1.winner() == "none")
-							return [size, i, j];
-						else
-							game1 = Game.copy();
-					}
-		for (let i1=0; i1<3; i1++)
-			for (let j1=0; j1<3; j1++)
-				for (let i2=0; i2<3; i2++)
-					for (let j2=0; j2<3; j2++)
-						if (game1.attemptMove(i1, j1, i2, j2) == true)
-						{
-							if (game1.winner() == "none")
-								return [i1, j1, i2, j2];
-							else
-								game1 = Game.copy();
-						}
-
-		for (let size = 2; size>=0; size--) // Search a valid move.
-			for (let i=0; i<3; i++)
-				for (let j=0; j<3; j++)
-					if (game1.attemptPlace(size, i, j) == true)
-						return [size, i, j];
-		for (let i1=0; i1<3; i1++)
-			for (let j1=0; j1<3; j1++)
-				for (let i2=0; i2<3; i2++)
-					for (let j2=0; j2<3; j2++)
-						if (game1.attemptMove(i1, j1, i2, j2) == true)
-							return [i1, j1, i2, j2];
+		return false;
 	}
 }
