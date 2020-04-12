@@ -1,0 +1,310 @@
+<style type="text/css">
+/*<![CDATA[*/
+
+.form-radio
+{
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     display: inline-block;
+     position: relative;
+     background-color: #f1f1f1;
+     color: #666;
+     top: 4px;
+     height: 20px;
+     width: 20px;
+     border: 0;
+     border-radius: 50px;
+     cursor: pointer;     
+     margin-right: 7px;
+     outline: none;
+}
+.form-radio:checked::before
+{
+     position: absolute;
+     font: 12px/1 'Open Sans', sans-serif;
+     left: 2.3px;
+     top: 2px;
+     content: '';
+     transform: rotate(40deg);
+}
+.form-radio:hover
+{
+     background-color: #f7f7f7;
+     border: 1px solid #031c47;
+}
+.form-radio:checked
+{
+     background-color: #031c47;
+     border: 1px solid white;
+}
+label
+{
+     font: 15px/1.7 'Open Sans', sans-serif;
+     color: #333;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     cursor: pointer;
+} 
+/*]]>*/
+</style><h1 style="text-align: center">
+    <b>Beispiel-Quiz</b>
+</h1>
+<br />
+
+<form name="quiz" id="quiz">
+    <b><span name="Question"></span><br />
+    He __________ it.<span name="doesn't like"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>don't like</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't like</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't likes</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    They __________ here very often.<span name="don't come"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>don't come</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't come</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't comes</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    John and Mary __________ twice a week.<span name="come"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>come</span><br />
+        <input type="radio" class="form-radio" /><span>comes</span><br />
+        <input type="radio" class="form-radio" /><span>coming</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    I __________ mind at all.<span name="don't"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>not</span><br />
+        <input type="radio" class="form-radio" /><span>isn't</span><br />
+        <input type="radio" class="form-radio" /><span>don't</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    It __________ sense.<span name="doesn't make"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>don't make</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't makes</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't make</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    They __________ happy.<span name="seem"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>seem</span><br />
+        <input type="radio" class="form-radio" /><span>seems</span><br />
+        <input type="radio" class="form-radio" /><span>seeming</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    You __________ to do it.<span name="don't have"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>don't have</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't have</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't has</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    She __________ a brother.<span name="doesn't have"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>doesn't has</span><br />
+        <input type="radio" class="form-radio" /><span>don't has</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't have</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    The journey __________ an hour.<span name="takes"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>take</span><br />
+        <input type="radio" class="form-radio" /><span>takes</span><br />
+        <input type="radio" class="form-radio" /><span>taking</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    I __________ it now.<span name="want"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>want</span><br />
+        <input type="radio" class="form-radio" /><span>wants</span><br />
+        <input type="radio" class="form-radio" /><span>wanting</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    Peggy __________ by bus.<span name="comes"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>come</span><br />
+        <input type="radio" class="form-radio" /><span>comes</span><br />
+        <input type="radio" class="form-radio" /><span>coming</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    She __________.<span name="doesn't know"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>don't know</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't knows</span><br />
+        <input type="radio" class="form-radio" /><span>doesn't know</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    She __________ hard.<span name="tries"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>try</span><br />
+        <input type="radio" class="form-radio" /><span>trys</span><br />
+        <input type="radio" class="form-radio" /><span>tries</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    They __________ football every weekend.<span name="play"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>play</span><br />
+        <input type="radio" class="form-radio" /><span>plays</span><br />
+        <input type="radio" class="form-radio" /><span>playing</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    The exam __________ two hours.<span name="lasts"></span></b>
+    <blockquote name="q">
+        <input type="radio" class="form-radio" /><span>last</span><br />
+        <input type="radio" class="form-radio" /><span>lastes</span><br />
+        <input type="radio" class="form-radio" /><span>lasts</span><br />
+    </blockquote>
+
+    <hr />
+    <b><span name="Question"></span><br />
+    Jack Sparrow - What ist missing?<span name="Captain"></span></b>
+    <blockquote name="q">
+        <input type="text" autocomplete="off" size="20" checked="true" onkeydown="if(event.keyCode==13) return false" /><span>​</span><br />
+    </blockquote>
+
+    <hr />
+    <br />
+    <input type="button" value="Bewertung anzeigen" onclick="getScore(this.form);" /> <input type="reset" value="Zurücksetzen" onclick="resetForm(this.form)" /><br />
+    <br />
+
+    <h2>
+        <b id="score">Ergebnis:</b>
+    </h2>
+    <script>
+    /* <![CDATA[ */
+    var numQues = document.getElementsByName("q").length;
+    var showScore = false;
+    var hogwartsGrading = false;
+
+    var answers = new Array(numQues);
+
+    document.addEventListener("DOMContentLoaded", function() {
+        for (var i=0; i<numQues; i++)
+                answers[i] = "*";
+        var ques = document.getElementsByName("Question");
+        for (var i=0; i<ques.length; i++) {
+                ques[i].textContent = "Frage " + (i+1) + ".";
+                answers[i] = ques[i].nextSibling.nextSibling.nextSibling.getAttribute("name");
+                ques[i].nextSibling.nextSibling.nextSibling.setAttribute("name", "");
+        }
+        var elems = document.getElementsByName("q");
+        for (var i=0; i<elems.length; i++) {
+                var choices = elems[i].children;
+                for (var j=0; 3*j<choices.length; j++) // Each answer has 3 elements.
+                        choices[3*j].setAttribute("name", "q" + (i+1));
+                if (choices.length > 0)
+                        if (choices[0].getAttribute("type") == "radio")
+                                for (var j=0; 3*j<choices.length; j++)
+                                        choices[3*j].setAttribute("value", choices[3*j].nextSibling.textContent);
+        }
+    });
+
+    function resetForm(form) {
+        if(showScore == true)
+        {
+                document.getElementById("result").remove();
+                for (var i=0; i<numQues; i++)
+                        document.getElementById("q" + (i+1) + "feedback").remove();
+        }
+        showScore = false;
+    }
+
+    function getScore(form) {
+        var score = 0;
+        if(showScore == true) {
+                document.getElementById("result").remove();
+                for(var i=0; i<numQues; i++)
+                        document.getElementById("q" + (i+1) + "feedback").remove();
+        }
+        for (var i=0; i<numQues; i++) {
+                var checked = false;
+                var choices = document.getElementsByName("q" + (i+1));
+                for (j=0; j<choices.length; j++) {
+                        if (choices[j].checked) {
+                                checked = true;
+                                if (choices[j].value == answers[i]) {
+                                        score++;
+                                        choices[j].nextSibling.insertAdjacentHTML('afterend', '<b id="q' + (i+1) + 'feedback" \
+                                        style="color: lime"><tt>    <\/tt>&#x2714<\/b>');
+                                        break;
+                                }
+                                choices[j].nextSibling.insertAdjacentHTML('afterend', '<b id="q' + (i+1) + 'feedback" \
+                                style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort: ' + answers[i] + '<\/b>');
+                                break;
+                        }
+                }
+                if (checked == false) {
+                        if (choices.length < 2)
+                                choices[0].nextSibling.insertAdjacentHTML('afterend', '<b id="q' + (i+1) + 'feedback" \
+                                style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort: ' + answers[i] + '<\/b>');
+                        else
+                                choices[0].parentNode.previousSibling.previousSibling.insertAdjacentHTML('beforeend', '<b id="q' +
+                                (i+1) + 'feedback" style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort: ' + answers[i] + '<\/b>');
+                }
+        }
+        var p = score/numQues;
+        var grade;
+        if (hogwartsGrading == true) {
+                if (p > 0.9)
+                        grade = "Ohnegleichen"
+                else if (p > 0.75)
+                        grade = "Erwartungen übertroffen"
+                else if (p > 0.5)
+                        grade = "Annehmbar"
+                else if (p > 0.3)
+                        grade = "Mies"
+                else if (p > 0.1)
+                        grade = "Schrecklich"
+                else
+                        grade = "Troll"
+        } else {
+                if (p >= 0.9)
+                        grade = "1"
+                else if (p >= 0.77)
+                        grade = "2";
+                else if (p >= 0.63)
+                        grade = "3"
+                else if (p > 0.5)
+                        grade = "4"
+                else
+                        grade = "5"
+        }
+        var result = " " + score + "/" + numQues + " Punkte (" + (100*p).toFixed(2).toString().replace('.', ',') + " %), Note: " + grade;
+        document.getElementById("score").insertAdjacentHTML('afterend', '<b id="result">' + result + '<\/b>');
+        showScore = true;
+    }
+    /*]]>*/
+    </script>
+</form>
