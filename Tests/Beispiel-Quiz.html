@@ -1,6 +1,8 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Beispiel-Quiz</title>
 <style type="text/css">
-/*<![CDATA[*/
-
 .form-radio
 {
      -webkit-appearance: none;
@@ -45,13 +47,16 @@ label
      -webkit-font-smoothing: antialiased;
      -moz-osx-font-smoothing: grayscale;
      cursor: pointer;
-} 
-/*]]>*/
-</style><h1 style="text-align: center">
+}
+</style>
+
+<h1 style="text-align: center">
     <b>Beispiel-Quiz</b>
 </h1>
 <br />
+</head>
 
+<body>
 <form name="quiz" id="quiz">
     <b><span name="Question"></span><br />
     He __________ it.<span name="doesn't like"></span></b>
@@ -203,7 +208,6 @@ label
         <b id="score">Ergebnis:</b>
     </h2>
     <script>
-    /* <![CDATA[ */
     var numQues = document.getElementsByName("q").length;
     var showScore = false;
     var hogwartsGrading = false;
@@ -305,6 +309,7 @@ label
         document.getElementById("score").insertAdjacentHTML('afterend', '<b id="result">' + result + '<\/b>');
         showScore = true;
     }
-    /*]]>*/
     </script>
 </form>
+</body>
+</html>
