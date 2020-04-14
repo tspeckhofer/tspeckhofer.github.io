@@ -77,12 +77,11 @@ hr {
 }
 
 .button:hover {
-	background-color: white;
-	color: #031c47;
+	background-color: #03183a;
 }
 
 .button:active {
-	border: 1px solid #031c47
+	border: 1px solid LightSteelBlue;
 }
 
 input[type=text] {
