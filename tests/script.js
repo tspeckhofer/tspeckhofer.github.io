@@ -94,7 +94,7 @@ function getScore(form) {
 					if (answers[n].includes(choice.value)) { // correct answer
 						score++;
 						choice.nextSibling.nextSibling.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-							style="color: #00FF00"><tt>    <\/tt>&#x2714<\/b>');
+							style="color: #FF0000"><tt>    <\/tt>&#x2714<\/b>');
 						break;
 					}
 					else { // wrong answer
@@ -114,7 +114,7 @@ function getScore(form) {
 			if (answers[n].includes(choice.value)) { // correct answer
 				score++;
 				choice.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-					style="color: #00FF00"><tt>    <\/tt>&#x2714<\/b>');
+					style="color: #FF0000"><tt>    <\/tt>&#x2714<\/b>');
 			}
 			else { // wrong answer
 				choice.parentNode.parentNode.insertAdjacentHTML('beforebegin', '<b id="question_' + (n+1) + '_feedback" \
