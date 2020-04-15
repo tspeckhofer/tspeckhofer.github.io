@@ -1,3 +1,30 @@
+body {
+	background-color: #031c47;
+	color: white;
+	font-family: sans-serif;
+	font-size: 18px;
+	line-height: 1.5;
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-bottom: 100px;
+}
+
+h1 {
+	font-size: 60px;
+}
+
+h2 {
+	font-size: 45px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+hr {
+	color: white;
+}
+
 .myradio
 {
      -webkit-appearance: none;
@@ -36,44 +63,17 @@
      border: 1px solid white;
 }
 
-body {
-	background-color: #031c47;
-	color: white;
-	font-family: sans-serif;
-	font-size: 12pt;
-	line-height: 1.5;
-	padding-left: 20%;
-	padding-right: 20%;
-	padding-bottom: 100pt;
-}
-
-h1 {
-	font-size: 40pt;
-}
-
-h2 {
-	font-size: 30pt;
-}
-
-h3 {
-	font-size: 20pt;
-}
-
-hr {
-	color: white;
-}
-
 .button {
 	background-color: #031c47;
 	border: 1px solid white;
 	color: white;
-	padding: 10pt 24pt;
+	padding: 10px 24px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 20pt;
+	font-size: 20px;
 	font-weight: bold;
-	border-radius: 4pt;
+	border-radius: 4px;
 }
 
 .button:hover {
@@ -85,17 +85,17 @@ hr {
 }
 
 input[type=text] {
-	min-width: 40%;
+	width: 400px;
 	max-width: 100%;
-	padding: 4pt 10pt;
-	margin: 8pt 0;
+	padding: 4px 10px;
+	margin: 8px 0;
 	box-sizing: border-box;
 	border: 2px solid white;
 	border-radius: 4px;
 	background-color: white;
 	color: #031c47;
 	font-family: sans-serif;
-	font-size: 14pt;
+	font-size: 18px;
 	font-weight: bold;
 }
 
