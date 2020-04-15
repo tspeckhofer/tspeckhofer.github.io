@@ -34,7 +34,7 @@ function init() {
 		
 		// generate new HTML:
 		var newHTML = '<b>Frage ' + (n+1) + '.<br>' + questions[i].question + '<\/b>\
-			<ul style="list-style-type:none">';
+			<ul style="list-style-type:none;">';
 			
 		// add answer choices or input box:
 		if (questions[i].wrong != undefined) { // multiple choice question
@@ -94,19 +94,19 @@ function getScore(form) {
 					if (answers[n].includes(choice.value)) { // correct answer
 						score++;
 						choice.nextSibling.nextSibling.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-							style="color: lime"><tt>    <\/tt>&#10004<\/b>');
+							style="color: transparent; text-shadow: 0 0 0 lime;"><tt>    <\/tt>&#10004<\/b>');
 						break;
 					}
 					else { // wrong answer
 						choice.nextSibling.nextSibling.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-							style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
+							style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
 					}
 				}
 			}
 			if (!any_checked) {
 				// nothing selected
 				choices[0].parentNode.parentNode.insertAdjacentHTML('beforebegin', '<b id="question_' + (n+1) +
-					'_feedback" style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + String(answers[n]) + '<\/b>');
+					'_feedback" style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + String(answers[n]) + '<\/b>');
 			}
 		}
 		else { // open-ended question
@@ -114,11 +114,11 @@ function getScore(form) {
 			if (answers[n].includes(choice.value)) { // correct answer
 				score++;
 				choice.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-					style="color: lime"><tt>    <\/tt>&#10004<\/b>');
+					style="color: lime; text-shadow: 0 0 0 lime;"><tt>    <\/tt>&#10004<\/b>');
 			}
 			else { // wrong answer
 				choice.parentNode.parentNode.insertAdjacentHTML('beforebegin', '<b id="question_' + (n+1) + '_feedback" \
-					style="color: red"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
+					style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
 			}
 		}
 	}
@@ -127,7 +127,7 @@ function getScore(form) {
 	var p = score/numQ;
 	var grade = calculateGrade(p, hogwartsGrading);
 	var result = " " + score + " / " + numQ + " Punkte = " + (100*p).toFixed(2).toString().replace('.', ',') + " %, Note: " + grade;
-	document.getElementById("score").insertAdjacentHTML('afterend', '<h3 style="text-align:center" id="result">' + result + '<\/h3>');
+	document.getElementById("score").insertAdjacentHTML('afterend', '<h3 style="text-align:center;" id="result">' + result + '<\/h3>');
 	score_displayed = true;
 }
 
