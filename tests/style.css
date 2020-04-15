@@ -85,7 +85,7 @@ hr {
 }
 
 input[type=text] {
-	width: 300pt;
+	width: 20%;
 	padding: 4pt 10pt;
 	margin: 8pt 0;
 	box-sizing: border-box;
