@@ -99,14 +99,14 @@ function getScore(form) {
 					}
 					else { // wrong answer
 						choice.nextSibling.nextSibling.insertAdjacentHTML('afterend', '<b id="question_' + (n+1) + '_feedback" \
-							style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
+							style="color: red;"><tt>    <\/tt>&#10008 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
 					}
 				}
 			}
 			if (!any_checked) {
 				// nothing selected
 				choices[0].parentNode.parentNode.insertAdjacentHTML('beforebegin', '<b id="question_' + (n+1) +
-					'_feedback" style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + String(answers[n]) + '<\/b>');
+					'_feedback" style="color: red;"><tt>    <\/tt>&#10008 Richtige Antwort(en): ' + String(answers[n]) + '<\/b>');
 			}
 		}
 		else { // open-ended question
@@ -118,7 +118,7 @@ function getScore(form) {
 			}
 			else { // wrong answer
 				choice.parentNode.parentNode.insertAdjacentHTML('beforebegin', '<b id="question_' + (n+1) + '_feedback" \
-					style="color: red;"><tt>    <\/tt>&#x2718 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
+					style="color: red;"><tt>    <\/tt>&#10008 Richtige Antwort(en): ' + answers[n].join(', ') + '<\/b>');
 			}
 		}
 	}
