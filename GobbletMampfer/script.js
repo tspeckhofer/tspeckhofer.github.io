@@ -51,7 +51,7 @@ function rules() {
 			+"Im Spielmodus 'PvC' wird mit der Maus durch Klicken ein Gobblet ausgewählt und durch erneutes Klicken das Feld, auf das der Gobblet gesetzt werden soll. Durch erneutes "
 			+"Klicken auf den Gobblet oder auf einen Bereich außerhalb der neun weißen Felder wird die Auswahl des Gobblets wieder aufgehoben. Die Farbe Blau wird vom Computer gespielt. "
 			+"Im Modus 'PvP' werden beide Farben mit der Maus gesteuert. Im Modus 'CvC' werden im Schnelldurchlauf Spiele durchgeführt, in denen der Computer gegen den Computer spielt. "
-			+"Durch neues Laden der Seite (z. B. Drücken von F5) kann in jedem Spielmodus das aktuelle Spiel abgebrochen werden.")
+			+"Durch neues Laden der Seite (z. B. Drücken von F5) kann in jedem Spielmodus das aktuelle Spiel abgebrochen werden.");
 }
 
 function startGamePVC() {
