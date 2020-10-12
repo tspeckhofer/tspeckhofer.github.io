@@ -1,0 +1,235 @@
+List of the Sublime Text LaTeX snippets/keybindings:
+(You can go to "View" - "Show Console" and enter "sublime.log_input(True)"
+in order to find out the correct key names that can be used for keybindings.)
+
+####################
+#  LaTeX snippets  #
+####################
+
+template + tab (inserts a LaTeX template)
+qed + tab "\qed"
+
+################
+#  Math modes  #
+################
+
+mk "$  $" (inline math mode)
+dm "\[  \]" (display math mode)
+ali + tab "\begin{align*} \end{align*}
+eq + tab "\begin{equation} \end{equation}
+
+##############################
+#  Parentheses and matrices  #
+##############################
+
+underbr "\underbrace{}_{}"
+overbr "\overbrace{}^{}"
+underset "\underset{}{}"
+overset "\overset{}{}"
+lr( "\left(  \right)"
+lr[ "\left[  \right]"
+set "\{ \}"
+lrset "\left\{  \right\}"
+lr| "\left| \right|"
+lan "\left\leftangle  \right\rightangle"
+floor "\left\lfloor  \right\rfloor"
+ceil "\left\lceil  \right\rceil"
+norm "\|  \|"
+lrnor "\left\|  \right\|"
+
+
+##########################
+#  Mathematical symbols  #
+##########################
+
+= " = " (adds spaces)
+> " > " (adds spaces)
+< " < " (adds spaces)
+!= " \neq "
+== "&= " (adds space only after "&=" because often lines start with "&=")
+equiv " \equiv "
+app " \approx "
+~~ " \sim "
+>= " \geq "
+<= " \leq "
+>> " \gg "
+<< " \ll "
++- "\pm"
+-+ "\mp"
+** " \cdot "
+xx " \times "
+sq "\sqrt{}"
+sr "^2"
+cb "^3"
+td "^{}"
+rd "^{()}"
+__ "_{}"
+EE "\exists "
+AA "\forall "
+iff " \iff "
+=> " \implies "
+=< " \impliedby "
+-> " \to "
+<- " \leftarrow "
+inn " \in "
+notin " \notin "
+... "\dots"
+oo "\infty"
+:: "\colon "
+mid " \mid "
+nmid " \nmid "
+mod " \mod "
+pmod " \pmod{}"
+<> "\diamond"
+// "\frac{}{}"
+case "\begin{cases} \end{cases}"
+ncr "\binomial{}{}" (n choose r)
+pmat "\begin{pmatrix} \end{pmatrix}"
+bmat "\begin{bmatrix} \end{bmatrix}"
+
+bar "\bar{}"
+wbar "\overline{}"
+hat "\hat{}"
+what "\widehat{}"
+til "\tilde{}"
+wtil "\widetilde{}"
+dot "\dot{}"
+ddot "\ddot{}"
+vec "\vec{}"
+
+sum "\sum"
+summ "\sum_{...}^{...} "
+prod "\prod"
+prodd "\prod_{...}^{...} "
+lim "\lim"
+limm "\lim_{...} "
+liminf "\liminf
+limsup "\limsup"
+int "\int"
+dint "\int_{...}^{...} \, " (definite integral)
+iint "\iint"
+iiint "\iiint"
+iiiint "\iiiint"
+idotsi "\idotsint"
+oint "\oint"
+dd "\mathrm{d}"
+, ", " (adds space)
+,, "\, "
+op "\operatorname{...}"
+par "\partial"
+
+##########################################
+#  Special functions and math operators  #
+##########################################
+
+sin|cos|tan|sec|csc|cot|min|max|inf|sup|log|exp|ln|perp|parallel|circ|ker|im|coker|coim|dim|codim|det|gcd|lcm|sgn|nabla|grad|divg|rot|Re|Im "\sin|\cos|..." (adds backslash)
+arcsin|arccos|arctan|arcsec|arccsc|arccot "\arcsin|\arccos|..." (adds backslash)
+arsinh|arcosh|artanh|arsech|arcsch|arcoth "\arsinh|\arcosh|..." (adds backslash)
+
+Python code for generating all the snippets of this section:
+
+text = "sin|cos|tan|sec|csc|cot|arcsin|arccos|arctan|arcsec|arccsc|arccot|arsinh|arcosh|artanh|arsech|arcsch|arcoth|min|max|inf|sup|log|exp|ln|perp|parallel|circ|ker|im|coker|coim|dim|codim|det|gcd|lcm|sgn|nabla|grad|divg|rot|Re|Im"
+items = text.split("|")
+result = ""
+slash = "\\"
+for item in items:
+	keys = [letter for letter in item]
+	keylist = ""
+	for i in range(len(keys)-1):
+		keylist += '"' + keys[i] + '", '
+	keylist += '"' + keys[len(keys)-1] + '"'
+	result += '\t{ "keys": [' + keylist + '], "command": "insert_snippet", "args": {"contents": "' + slash + slash + item + '"}, "context":\n'
+	result += '\t\t[\n'
+	result += '\t\t\t{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" }\n'
+	result += '\t\t]\n'
+	result += '\t},\n'
+print(result)
+
+########################
+#  Sets and functions  #
+########################
+
+<-> "\leftrightarrow"
+inv "^{-1}" (inverse)
+com "^{c}" (complement)
+smi " \setminus "
+cc " \subset "
+ceq " \subseteq "
+Nn " \cap "
+UU " \cup "
+nnn "\bigcap"
+uuu "\bigcup"
+WW " \wedge "
+VV " \vee "
+www "\bigwedge"
+vvv "\bigvee"
+OO "\emptyset"
+<! " \triangleleft "
+text "\text{}"
+
+#######################
+#  Letters and fonts  #
+#######################
+
+bb "\mathbb{}"
+cal "\mathcal{}"
+scr "\mathscr{}" -> put "\usepackage{mathrsfs}" in the preamble!
+ell "\ell"
+latex "\LaTeX"
+quad "\quad "
+
+NN "\N"
+ZZ "\Z"
+QQ "\Q"
+RR "\R"
+CC "\C"
+FF "\F"
+DD "\D"
+TT "\T"
+PP "\P"
+XX "\E" (eXpected value)
+
+.a "\alpha"
+.b "\beta"
+.g "\gamma"
+.d "\delta"
+.e "\epsilon"
+..e "\varepsilon"
+.z "\zeta"
+.h "\eta"
+.q "\theta"
+..q "\vartheta"
+.i "\iota"
+.k "\kappa"
+..k "\varkappa"
+.l "\lambda"
+.m "\mu"
+.n "\nu"
+.x "\xi"
+.p "\pi"
+..p "\varpi"
+.r "\rho"
+..r "\varrho"
+.s "\sigma"
+..s "\varsigma"
+.t "\tau"
+.u "\upsilon"
+.f "\phi"
+..f "\varphi"
+.c "\chi"
+.y "\psi"
+.o "\omega"
+.w "\omega"
+
+.G "\Gamma"
+.D "\Delta"
+.Q "\Theta"
+.L "\Lambda"
+.X "\Xi"
+.P "\Pi"
+.S "\Sigma"
+.U "\Upsilon"
+.F "\Phi"
+.Y "\Psi"
+.O "\Omega"
+.W "\Omega"

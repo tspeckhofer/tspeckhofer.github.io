@@ -1,0 +1,1361 @@
+[
+	// If you are not using the "Vintageous" package for Vim emulation, you do not need these two snippets:
+	{
+		"keys": ["j", "k"],
+		"command": "_enter_normal_mode",
+		"args": { "mode": "mode_insert" },
+		"context": [{ "key": "vi_insert_mode_aware" }]
+	},
+	{
+		"keys": ["k", "j"],
+		"command": "_enter_normal_mode",
+		"args": { "mode": "mode_insert" },
+		"context": [{ "key": "vi_insert_mode_aware" }]
+	},
+
+	// ####################
+	// #  LaTeX snippets  #
+	// ####################
+
+	{ "keys": ["t", "e", "m", "p", "l", "a", "t", "e", "tab"], "command": "insert_snippet", "args": {
+		"contents": "\\documentclass[12pt,a4paper,oneside]{article}\n%\\usepackage[german]{babel}\n\\usepackage{Template}\n%\\usepackage[onehalfspacing]{setspace}\n%=========================================================\n\\title{${1:\\bfseries Title}}\n\\author{${2:Author}}\n\\date{\\today}\n%=========================================================\n\n\\begin{document}\n\n%\\maketitlepage\n%\\maketitle\n\n%\\begin{abstract}\n%Abstract.\n%\\end{abstract}\n\n%\\tableofcontents\n\n$0\n\n\\end{document}"
+		}, "context":
+			[
+				{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+				{ "key": "vi_insert_mode_aware" }
+			]
+	},
+	{ "keys": ["q", "e", "d", "tab"], "command": "insert_snippet", "args": {"contents": "\\qed"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// ################
+	// #  Math modes  #
+	// ################
+
+	{ "keys": ["m", "k"], "command": "insert_snippet", "args": {"contents": "\\$ $1 \\$"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "m"], "command": "insert_snippet", "args": {"contents": "\\[\n\t$1\n\\]"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "l", "i", "tab"], "command": "insert_snippet", "args": {"contents": "\\begin{align*}\n\t$1\n\\end{align*}"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["e", "q", "tab"], "command": "insert_snippet", "args": {"contents": "\\begin{equation}\n\t$1\n\\end{equation}"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// ##############################
+	// #  Parentheses and matrices  #
+	//###############################
+	{ "keys": ["u", "n", "d", "e", "r", "b", "r"], "command": "insert_snippet", "args": {"contents": "\\underbrace{$1}_{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["o", "v", "e", "r", "b", "r"], "command": "insert_snippet", "args": {"contents": "\\overbrace{$1}^{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["u", "n", "d", "e", "r", "s", "e", "t"], "command": "insert_snippet", "args": {"contents": "\\underset{$1}{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["o", "v", "e", "r", "s", "e", "t"], "command": "insert_snippet", "args": {"contents": "\\overset{$1}{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "r", "("], "command": "insert_snippet", "args": {"contents": "\\left( $1 \\right)"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "r", "ctrl+alt+8"], "command": "insert_snippet", "args": {"contents": "\\left[ $1 \\right]"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "e", "t"], "command": "insert_snippet", "args": {"contents": "\\\\{ $1 \\\\}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "r", "s", "e", "t"], "command": "insert_snippet", "args": {"contents": "\\left\\\\{ $1 \\right\\\\}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "r", "|"], "command": "insert_snippet", "args": {"contents": "\\left| $1 \\right|"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "a", "n"], "command": "insert_snippet", "args": {"contents": "\\left\\langle $1 \\right\\rangle"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["f", "l", "o", "o", "r"], "command": "insert_snippet", "args": {"contents": "\\left\\lfloor $1 \\right\\rfloor"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "e", "i", "l"], "command": "insert_snippet", "args": {"contents": "\\left\\lceil $1 \\right\\rceil"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "o", "r", "m"], "command": "insert_snippet", "args": {"contents": "\\| $1 \\|"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "r", "n", "o", "r"], "command": "insert_snippet", "args": {"contents": "\\left\\| $1 \\right\\|"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// ##########################
+	// #  Mathematical symbols  #
+	// ##########################
+
+// You can un-comment the following snippets in order to add spaces, e. g. "+" -> " + ".
+// But this is not always a good thing, for example if you write "f^{+}", it becomes "f^{ + }".
+
+//	{ "keys": ["+"], "command": "insert_snippet", "args": {"contents": " + "}, "context":
+//		[
+//			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+//			{ "key": "vi_insert_mode_aware" }
+//		]
+//	},
+//	{ "keys": ["-"], "command": "insert_snippet", "args": {"contents": " - "}, "context":
+//		[
+//			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+//			{ "key": "vi_insert_mode_aware" }
+//		]
+//	},
+//	{ "keys": ["*"], "command": "insert_snippet", "args": {"contents": " * "}, "context":
+//		[
+//			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+//			{ "key": "vi_insert_mode_aware" }
+//		]
+//	},
+//	{ "keys": ["/"], "command": "insert_snippet", "args": {"contents": " / "}, "context":
+//		[
+//			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+//			{ "key": "vi_insert_mode_aware" }
+//		]
+//	},
+	{ "keys": ["="], "command": "insert_snippet", "args": {"contents": " = "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [">"], "command": "insert_snippet", "args": {"contents": " > "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<"], "command": "insert_snippet", "args": {"contents": " < "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["!", "="], "command": "insert_snippet", "args": {"contents": " \\neq "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["=", "="], "command": "insert_snippet", "args": {"contents": "&="}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["e", "q", "u", "i", "v"], "command": "insert_snippet", "args": {"contents": " \\equiv "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "p", "p"], "command": "insert_snippet", "args": {"contents": " \\approx "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["~", "~"], "command": "insert_snippet", "args": {"contents": " \\sim "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [">", "="], "command": "insert_snippet", "args": {"contents": " \\geq "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<", "="], "command": "insert_snippet", "args": {"contents": " \\leq "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [">", ">"], "command": "insert_snippet", "args": {"contents": " \\gg "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<", "<"], "command": "insert_snippet", "args": {"contents": " \\ll "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["+", "-"], "command": "insert_snippet", "args": {"contents": "\\pm"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["-", "+"], "command": "insert_snippet", "args": {"contents": "\\mp"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["*", "*"], "command": "insert_snippet", "args": {"contents": " \\cdot "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["x", "x"], "command": "insert_snippet", "args": {"contents": " \\times "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "q"], "command": "insert_snippet", "args": {"contents": "\\sqrt{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "r"], "command": "insert_snippet", "args": {"contents": "^2"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "b"], "command": "insert_snippet", "args": {"contents": "^3"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["t", "d"], "command": "insert_snippet", "args": {"contents": "^{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["r", "d"], "command": "insert_snippet", "args": {"contents": "^{($1)}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["_", "_"], "command": "insert_snippet", "args": {"contents": "_{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["E", "E"], "command": "insert_snippet", "args": {"contents": "\\exists "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["A", "A"], "command": "insert_snippet", "args": {"contents": "\\forall "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "f", "f"], "command": "insert_snippet", "args": {"contents": " \\iff "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["=", ">"], "command": "insert_snippet", "args": {"contents": " \\implies "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["=", "<"], "command": "insert_snippet", "args": {"contents": " \\impliedby "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["-", ">"], "command": "insert_snippet", "args": {"contents": " \\to "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<", "-"], "command": "insert_snippet", "args": {"contents": " \\leftarrow "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "n", "n"], "command": "insert_snippet", "args": {"contents": " \\in "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "o", "t", "i", "n"], "command": "insert_snippet", "args": {"contents": " \\notin "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "."], "command": "insert_snippet", "args": {"contents": "\\dots"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["o", "o"], "command": "insert_snippet", "args": {"contents": "\\infty"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [":", ":"], "command": "insert_snippet", "args": {"contents": "\\colon "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["m", "i", "d"], "command": "insert_snippet", "args": {"contents": " \\mid "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "m", "i", "d"], "command": "insert_snippet", "args": {"contents": " \\nmid "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["m", "o", "d"], "command": "insert_snippet", "args": {"contents": " \\mod "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "m", "o", "d"], "command": "insert_snippet", "args": {"contents": " \\pmod{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<", ">"], "command": "insert_snippet", "args": {"contents": "\\diamond"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["/", "/"], "command": "insert_snippet", "args": {"contents": "\\frac{$1}{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "a", "s", "e"], "command": "insert_snippet", "args": {"contents": "\\begin{cases} $1 \\end{cases}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "c", "r"], "command": "insert_snippet", "args": {"contents": "\\binom{$1}{$2}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "m", "a", "t"], "command": "insert_snippet", "args": {"contents": "\\begin{pmatrix}\n\t$1\n\\end{pmatrix}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["b", "m", "a", "t"], "command": "insert_snippet", "args": {"contents": "\\begin{bmatrix}\n\t$1\n\\end{bmatrix}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+
+	{ "keys": ["b", "a", "r"], "command": "insert_snippet", "args": {"contents": "\\bar{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["w", "b", "a", "r"], "command": "insert_snippet", "args": {"contents": "\\overline{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["h", "a", "t"], "command": "insert_snippet", "args": {"contents": "\\hat{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["w", "h", "a", "t"], "command": "insert_snippet", "args": {"contents": "\\widehat{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["t", "i", "l"], "command": "insert_snippet", "args": {"contents": "\\tilde{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["w", "t", "i", "l"], "command": "insert_snippet", "args": {"contents": "\\widetilde{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "o", "t"], "command": "insert_snippet", "args": {"contents": "\\dot{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "o", "d", "o", "t"], "command": "insert_snippet", "args": {"contents": "\\ddot{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["v", "e", "c"], "command": "insert_snippet", "args": {"contents": "\\vec{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "u", "m"], "command": "insert_snippet", "args": {"contents": "\\sum"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "u", "m", "m"], "command": "insert_snippet", "args": {"contents": "\\sum_{${1:n}=${2:0}}^{${3:\\infty}} "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "r", "o", "d"], "command": "insert_snippet", "args": {"contents": "\\prod"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "r", "o", "d", "d"], "command": "insert_snippet", "args": {"contents": "\\prod_{${1:n}=${2:0}}^{${3:\\infty}} "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "i", "m"], "command": "insert_snippet", "args": {"contents": "\\lim"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "i", "m", "m"], "command": "insert_snippet", "args": {"contents": "\\lim_{${1:n} \\to ${2:\\infty}} "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "i", "m", "i", "n", "f"], "command": "insert_snippet", "args": {"contents": "\\liminf"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "i", "m", "s", "u", "p"], "command": "insert_snippet", "args": {"contents": "\\limsup"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\int"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\int_{${1:-\\infty}}^{${2:\\infty}} $3 \\, "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\iint"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "i", "i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\iiint"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "i", "i", "i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\iiiint"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["o", "i", "n", "t"], "command": "insert_snippet", "args": {"contents": "\\oint"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "d"], "command": "insert_snippet", "args": {"contents": "\\mathrm{d}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [","], "command": "insert_snippet", "args": {"contents": ", "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [",", ","], "command": "insert_snippet", "args": {"contents": "\\, "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["o", "p"], "command": "insert_snippet", "args": {"contents": "\\operatorname{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "a", "r"], "command": "insert_snippet", "args": {"contents": "\\partial "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// ##########################################
+	// #  Special functions and math operators  #
+	// ##########################################
+
+	{ "keys": ["s", "i", "n"], "command": "insert_snippet", "args": {"contents": "\\sin"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "s"], "command": "insert_snippet", "args": {"contents": "\\cos"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["t", "a", "n"], "command": "insert_snippet", "args": {"contents": "\\tan"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "e", "c"], "command": "insert_snippet", "args": {"contents": "\\sec"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "s", "c"], "command": "insert_snippet", "args": {"contents": "\\csc"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "t"], "command": "insert_snippet", "args": {"contents": "\\cot"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "s", "i", "n"], "command": "insert_snippet", "args": {"contents": "\\arcsin"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "c", "o", "s"], "command": "insert_snippet", "args": {"contents": "\\arccos"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "t", "a", "n"], "command": "insert_snippet", "args": {"contents": "\\arctan"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "s", "e", "c"], "command": "insert_snippet", "args": {"contents": "\\arcsec"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "c", "s", "c"], "command": "insert_snippet", "args": {"contents": "\\arccsc"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "c", "o", "t"], "command": "insert_snippet", "args": {"contents": "\\arccot"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "s", "i", "n", "h"], "command": "insert_snippet", "args": {"contents": "\\arsinh"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "o", "s", "h"], "command": "insert_snippet", "args": {"contents": "\\arcosh"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "t", "a", "n", "h"], "command": "insert_snippet", "args": {"contents": "\\artanh"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "s", "e", "c", "h"], "command": "insert_snippet", "args": {"contents": "\\arsech"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "s", "c", "h"], "command": "insert_snippet", "args": {"contents": "\\arcsch"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["a", "r", "c", "o", "t", "h"], "command": "insert_snippet", "args": {"contents": "\\arcoth"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["m", "i", "n"], "command": "insert_snippet", "args": {"contents": "\\min"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["m", "a", "x"], "command": "insert_snippet", "args": {"contents": "\\max"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "n", "f"], "command": "insert_snippet", "args": {"contents": "\\inf"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "u", "p"], "command": "insert_snippet", "args": {"contents": "\\sup"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "o", "g"], "command": "insert_snippet", "args": {"contents": "\\log"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["e", "x", "p"], "command": "insert_snippet", "args": {"contents": "\\exp"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "n"], "command": "insert_snippet", "args": {"contents": "\\ln"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "e", "r", "p"], "command": "insert_snippet", "args": {"contents": "\\perp"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["p", "a", "r", "a", "l", "l", "e", "l"], "command": "insert_snippet", "args": {"contents": "\\parallel"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "i", "r", "c"], "command": "insert_snippet", "args": {"contents": "\\circ"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["k", "e", "r"], "command": "insert_snippet", "args": {"contents": "\\ker"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "m"], "command": "insert_snippet", "args": {"contents": "\\im"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "k", "e", "r"], "command": "insert_snippet", "args": {"contents": "\\coker"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "i", "m"], "command": "insert_snippet", "args": {"contents": "\\coim"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "i", "m"], "command": "insert_snippet", "args": {"contents": "\\dim"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "d", "i", "m"], "command": "insert_snippet", "args": {"contents": "\\codim"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "e", "t"], "command": "insert_snippet", "args": {"contents": "\\det"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["g", "c", "d"], "command": "insert_snippet", "args": {"contents": "\\gcd"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "c", "m"], "command": "insert_snippet", "args": {"contents": "\\lcm"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "g", "n"], "command": "insert_snippet", "args": {"contents": "\\sgn"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "a", "b", "l", "a"], "command": "insert_snippet", "args": {"contents": "\\nabla"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["g", "r", "a", "d"], "command": "insert_snippet", "args": {"contents": "\\grad"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["d", "i", "v", "g"], "command": "insert_snippet", "args": {"contents": "\\divg"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["r", "o", "t"], "command": "insert_snippet", "args": {"contents": "\\rot"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "u", "r", "l"], "command": "insert_snippet", "args": {"contents": "\\curl"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["R", "e"], "command": "insert_snippet", "args": {"contents": "\\Re"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["I", "m"], "command": "insert_snippet", "args": {"contents": "\\Im"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// ########################
+	// #  Sets and functions  #
+	// ########################
+
+	{ "keys": ["<", "-", ">"], "command": "insert_snippet", "args": {"contents": " \\leftrightarrow "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["i", "n", "v"], "command": "insert_snippet", "args": {"contents": "^{-1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "o", "m"], "command": "insert_snippet", "args": {"contents": "^{c}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "m", "i"], "command": "insert_snippet", "args": {"contents": " \\setminus "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "c"], "command": "insert_snippet", "args": {"contents": " \\subset "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "e", "q"], "command": "insert_snippet", "args": {"contents": " \\subseteq "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["N", "n"], "command": "insert_snippet", "args": {"contents": " \\cap "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["U", "U"], "command": "insert_snippet", "args": {"contents": " \\cup "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["n", "n", "n"], "command": "insert_snippet", "args": {"contents": "\\bigcap"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["u", "u", "u"], "command": "insert_snippet", "args": {"contents": "\\bigcup"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["W", "W"], "command": "insert_snippet", "args": {"contents": " \\wedge "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["V", "V"], "command": "insert_snippet", "args": {"contents": " \\vee "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["w", "w", "w"], "command": "insert_snippet", "args": {"contents": "\\bigwedge"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["v", "v", "v"], "command": "insert_snippet", "args": {"contents": "\\bigvee"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["O", "O"], "command": "insert_snippet", "args": {"contents": "\\emptyset"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["<", "!"], "command": "insert_snippet", "args": {"contents": " \\triangleleft "}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["t", "e", "x", "t"], "command": "insert_snippet", "args": {"contents": "\\text{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	// #######################
+	// #  Letters and fonts  #
+	// #######################
+
+	{ "keys": ["b", "b"], "command": "insert_snippet", "args": {"contents": "\\mathbb{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["c", "a", "l"], "command": "insert_snippet", "args": {"contents": "\\mathcal{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["s", "c", "r"], "command": "insert_snippet", "args": {"contents": "\\mathscr{$1}"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["e", "l", "l"], "command": "insert_snippet", "args": {"contents": "\\ell"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["l", "a", "t", "e", "x"], "command": "insert_snippet", "args": {"contents": "\\LaTeX"}, "context":
+		[
+			{ "key": "selector", "operator": "not_equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["q", "u", "a", "d"], "command": "insert_snippet", "args": {"contents": "\\quad"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+
+	{ "keys": ["N", "N"], "command": "insert_snippet", "args": {"contents": "\\N"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["Z", "Z"], "command": "insert_snippet", "args": {"contents": "\\Z"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["Q", "Q"], "command": "insert_snippet", "args": {"contents": "\\Q"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["R", "R"], "command": "insert_snippet", "args": {"contents": "\\R"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["C", "C"], "command": "insert_snippet", "args": {"contents": "\\C"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["F", "F"], "command": "insert_snippet", "args": {"contents": "\\F"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["T", "T"], "command": "insert_snippet", "args": {"contents": "\\T"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["D", "D"], "command": "insert_snippet", "args": {"contents": "\\D"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["P", "P"], "command": "insert_snippet", "args": {"contents": "\\P"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": ["X", "X"], "command": "insert_snippet", "args": {"contents": "\\E"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+	{ "keys": [".", "a"], "command": "insert_snippet", "args": {"contents": "\\alpha"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "b"], "command": "insert_snippet", "args": {"contents": "\\beta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "g"], "command": "insert_snippet", "args": {"contents": "\\gamma"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "d"], "command": "insert_snippet", "args": {"contents": "\\delta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "e"], "command": "insert_snippet", "args": {"contents": "\\epsilon"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "e"], "command": "insert_snippet", "args": {"contents": "\\varepsilon"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "z"], "command": "insert_snippet", "args": {"contents": "\\zeta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "h"], "command": "insert_snippet", "args": {"contents": "\\eta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "q"], "command": "insert_snippet", "args": {"contents": "\\theta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "q"], "command": "insert_snippet", "args": {"contents": "\\vartheta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "i"], "command": "insert_snippet", "args": {"contents": "\\iota"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "k"], "command": "insert_snippet", "args": {"contents": "\\kappa"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "k"], "command": "insert_snippet", "args": {"contents": "\\varkappa"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "l"], "command": "insert_snippet", "args": {"contents": "\\lambda"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "m"], "command": "insert_snippet", "args": {"contents": "\\mu"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "n"], "command": "insert_snippet", "args": {"contents": "\\nu"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "x"], "command": "insert_snippet", "args": {"contents": "\\xi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "p"], "command": "insert_snippet", "args": {"contents": "\\pi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "p"], "command": "insert_snippet", "args": {"contents": "\\varpi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "r"], "command": "insert_snippet", "args": {"contents": "\\rho"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "r"], "command": "insert_snippet", "args": {"contents": "\\varrho"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "s"], "command": "insert_snippet", "args": {"contents": "\\sigma"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "s"], "command": "insert_snippet", "args": {"contents": "\\varsigma"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "t"], "command": "insert_snippet", "args": {"contents": "\\tau"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "u"], "command": "insert_snippet", "args": {"contents": "\\upsilon"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "f"], "command": "insert_snippet", "args": {"contents": "\\phi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", ".", "f"], "command": "insert_snippet", "args": {"contents": "\\varphi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "c"], "command": "insert_snippet", "args": {"contents": "\\chi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "y"], "command": "insert_snippet", "args": {"contents": "\\psi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "o"], "command": "insert_snippet", "args": {"contents": "\\omega"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "w"], "command": "insert_snippet", "args": {"contents": "\\omega"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+
+
+	{ "keys": [".", "G"], "command": "insert_snippet", "args": {"contents": "\\Gamma"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "D"], "command": "insert_snippet", "args": {"contents": "\\Delta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "Q"], "command": "insert_snippet", "args": {"contents": "\\Theta"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "L"], "command": "insert_snippet", "args": {"contents": "\\Lambda"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "X"], "command": "insert_snippet", "args": {"contents": "\\Xi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "P"], "command": "insert_snippet", "args": {"contents": "\\Pi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "S"], "command": "insert_snippet", "args": {"contents": "\\Sigma"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "U"], "command": "insert_snippet", "args": {"contents": "\\Upsilon"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "F"], "command": "insert_snippet", "args": {"contents": "\\Phi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "Y"], "command": "insert_snippet", "args": {"contents": "\\Psi"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" },
+			{ "key": "vi_insert_mode_aware" }
+		]
+	},
+	{ "keys": [".", "O"], "command": "insert_snippet", "args": {"contents": "\\Omega"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" }
+		]
+	},
+	{ "keys": [".", "W"], "command": "insert_snippet", "args": {"contents": "\\Omega"}, "context":
+		[
+			{ "key": "selector", "operator": "equal", "operand": "text.tex.latex meta.environment.math" }
+		]
+	}
+]
