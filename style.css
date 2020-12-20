@@ -37,7 +37,7 @@ hr {
 	color: white;
 }
 
-div {
+.content {
 	background-color: rgba(24, 24, 42, 0.85);
 	padding-left: 30px;
 	padding-right: 30px;
