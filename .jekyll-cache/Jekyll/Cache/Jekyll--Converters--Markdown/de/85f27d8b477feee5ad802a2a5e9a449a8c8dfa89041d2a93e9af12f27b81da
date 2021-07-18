@@ -1,0 +1,202 @@
+I"�]<h1 id="latex-and-sublime-text">LaTeX and Sublime Text</h1>
+
+<p>This tutorial explains how to use $\LaTeX$ in the text editor <a href="https://www.sublimetext.com/">Sublime Text</a> and how to set up code snippets to write faster. For a general introduction to $\LaTeX$, see e.g. <a href="https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes">this tutorial by Overleaf</a>. This setup is inspired by <a href="https://castel.dev/post/lecture-notes-1/">this article by Gilles Castel</a>, where a similar setup for Linux is described (using Vim as a text editor). On Windows, however, it is easier to set everything up in Sublime Text.</p>
+
+<center><img src="/img/2021-07-17-latex-and-sublime-text/LaTeX_Sublime_Text.png" width="100%" /></center>
+
+<p><strong>Contents:</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="#latex-and-sublime-text" id="markdown-toc-latex-and-sublime-text">LaTeX and Sublime Text</a>    <ul>
+      <li><a href="#step-1-installing-the-required-software" id="markdown-toc-step-1-installing-the-required-software">Step 1: Installing the required software</a></li>
+      <li><a href="#step-2-set-up-sublime-text-as-a-latex-editor" id="markdown-toc-step-2-set-up-sublime-text-as-a-latex-editor">Step 2: Set up Sublime Text as a $\LaTeX$ editor</a></li>
+      <li><a href="#step-3-set-up-snippets" id="markdown-toc-step-3-set-up-snippets">Step 3: Set up snippets</a></li>
+      <li><a href="#step-4-set-up-vim-navigation" id="markdown-toc-step-4-set-up-vim-navigation">Step 4: Set up Vim navigation</a>        <ul>
+          <li><a href="#installation" id="markdown-toc-installation">Installation</a></li>
+          <li><a href="#a-short-introduction-to-vim" id="markdown-toc-a-short-introduction-to-vim">A short introduction to Vim</a>            <ul>
+              <li><a href="#command-mode" id="markdown-toc-command-mode">Command mode</a></li>
+              <li><a href="#insert-mode" id="markdown-toc-insert-mode">Insert mode</a></li>
+              <li><a href="#visual-mode" id="markdown-toc-visual-mode">Visual mode</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<hr />
+
+<h2 id="step-1-installing-the-required-software">Step 1: Installing the required software</h2>
+
+<ul>
+  <li>
+    <p>Install a $\LaTeX$ distribution. The most common ones are:</p>
+
+    <ul>
+      <li><a href="https://www.tug.org/texlive/acquire-netinstall.html">TeX Live</a></li>
+      <li><a href="https://miktex.org/download">MiKTeX</a></li>
+    </ul>
+
+    <blockquote>
+      <p>The most important differences between TeX Live and MiKTeX are:</p>
+      <ul>
+        <li>TeX Live compiles significantly faster.</li>
+        <li>MiKTeX can install packages used in a $\LaTeX$ file on the fly. However, if you choose the “full scheme” when installing TeXLive, all common packages are already included, and additional packages can be installed using the “TeX Live Manager”. In this tutorial, we use TeX Live.</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p>Install <a href="https://www.sublimetext.com/3">Sublime Text</a>.</p>
+  </li>
+  <li>
+    <p>Install <a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html">Sumatra PDF</a>. This is a PDF viewer that automatically refreshes when the currently opened file is overwritten on the hard drive. (Many other PDF viewers do not even allow overwriting files that are currently opened!)</p>
+  </li>
+</ul>
+
+<h2 id="step-2-set-up-sublime-text-as-a-latex-editor">Step 2: Set up Sublime Text as a $\LaTeX$ editor</h2>
+
+<ul>
+  <li>
+    <p>Install Package Control in Sublime Text: Press <code class="language-plaintext highlighter-rouge">Ctrl + Shift + P</code> and select <code class="language-plaintext highlighter-rouge">Install Package Control</code>. After the installation, restart Sublime Text.</p>
+  </li>
+  <li>Install the required Sublime Text packages: In the menu bar, click on <code class="language-plaintext highlighter-rouge">Preferences - Package Control</code>. Then select <code class="language-plaintext highlighter-rouge">Package Control: Install Package</code> (see image below). Now you can search for available packages and install them. Install the following packages:
+    <ul>
+      <li>
+        <p>LaTeXTools</p>
+      </li>
+      <li>
+        <p>LaTeX-cwl (this package already contains some code snippets)</p>
+      </li>
+      <li>
+        <p>Optional: Install the color scheme “10% Too Dull for My Tastes”. Afterwards, you can select the “scotchy - 10% Too Dull […]” color scheme under <code class="language-plaintext highlighter-rouge">Preferences - Color Scheme...</code>. This color scheme is also used in the screenshots on this page.</p>
+      </li>
+    </ul>
+
+    <center><img src="/img/2021-07-17-latex-and-sublime-text/Package_Manager.png" width="100%" /></center>
+  </li>
+  <li>
+    <p>Under <code class="language-plaintext highlighter-rouge">Preferences - Package Settings - LaTeXTools - Settings - User</code> change the line <code class="language-plaintext highlighter-rouge">"builder": "traditional",</code> to <code class="language-plaintext highlighter-rouge">"builder": "basic",</code> (including the comma at the end).</p>
+  </li>
+  <li>
+    <p>Close and restart Sublime Text.</p>
+  </li>
+  <li>Now you can open a <code class="language-plaintext highlighter-rouge">.tex</code> file in Sublime Text and press <code class="language-plaintext highlighter-rouge">Ctrl + B</code> in order to compile it (this also saves the <code class="language-plaintext highlighter-rouge">.tex</code> file). The generated PDF file is opened in SumatraPDF automatically. If something does not work as expected, you might find a solution <a href="https://latextools.readthedocs.io/en/latest/install/">here</a>.</li>
+</ul>
+
+<blockquote>
+  <p>Some further tips:</p>
+
+  <ul>
+    <li>Using <code class="language-plaintext highlighter-rouge">Windows + left/right arrow key</code>, you can position the currently active window in the left/right half of your screen, so you can see the $\LaTeX$ source code and the PDF output at the same time (like in the first screenshot). By double-clicking on a line in the PDF file, Sublime text automatically jumps to the corresponding line in the <code class="language-plaintext highlighter-rouge">.tex</code> file (this is called inverse search).</li>
+    <li>After compiling, you can press <code class="language-plaintext highlighter-rouge">Ctrl + L</code> and then immediately <code class="language-plaintext highlighter-rouge">Backspace</code> in order to clean the folder that contains the <code class="language-plaintext highlighter-rouge">.tex</code> file and delete all temporary files.</li>
+  </ul>
+</blockquote>
+
+<h2 id="step-3-set-up-snippets">Step 3: Set up snippets</h2>
+
+<p>This functionality is the main reason why I use Sublime Text as my $\LaTeX$ editor: You can define your own code snippets, which are replaced by $\LaTeX$ commands automatically while you are typing (without even having to press an extra button!). On Linux, this <a href="https://castel.dev/post/lecture-notes-1/">can be done directly in Vim</a>, but on Windows it is more complicated to set this up in Vim (and I could not get it to work).</p>
+
+<ul>
+  <li>In order to use snippets, you have to go to <code class="language-plaintext highlighter-rouge">Preferences - Key Bindings</code> in Sublime Text and paste the contents of <a href="https://raw.githubusercontent.com/SpeckhoferEnterprises/LaTeX_SublimeText/master/SublimeTextKeymap.txt">this file</a> into the right column.</li>
+  <li>If you do not use Vim navigation using the “Vintageous” package (see below), you can delete the first two snippets.</li>
+  <li>Some useful commands that are not defined by default in $\LaTeX$ are also replaced automatically (e.g. <code class="language-plaintext highlighter-rouge">NN</code> is replaced by <code class="language-plaintext highlighter-rouge">\N</code>, which stands for <code class="language-plaintext highlighter-rouge">\mathbb{N}</code>, and there are a few additional commands where a backslash is added: <code class="language-plaintext highlighter-rouge">\lcm</code>, <code class="language-plaintext highlighter-rouge">\coker</code>, <code class="language-plaintext highlighter-rouge">\coim</code>, <code class="language-plaintext highlighter-rouge">\rot</code> and some arcus- or area functions, i.e. <code class="language-plaintext highlighter-rouge">\arcsec</code>, <code class="language-plaintext highlighter-rouge">\arsinh</code>, <code class="language-plaintext highlighter-rouge">\artanh</code>, …). These commands are defined in my file <a href="https://raw.githubusercontent.com/SpeckhoferEnterprises/LaTeX_SublimeText/master/Template.sty"><code class="language-plaintext highlighter-rouge">Template.sty</code></a>, which can be copied to the folder that contains the <code class="language-plaintext highlighter-rouge">.tex</code> file and included by adding <code class="language-plaintext highlighter-rouge">\usepackage{Template}</code> to the preamble.</li>
+  <li>Using the snippet <code class="language-plaintext highlighter-rouge">template[tab]</code>, where <code class="language-plaintext highlighter-rouge">[tab]</code> stands for pressing the <code class="language-plaintext highlighter-rouge">tab</code> key, a $\LaTeX$ template containing the most commonly used packages (partly by using <code class="language-plaintext highlighter-rouge">\usepackage{Template}</code>) can be pasted in an empty <code class="language-plaintext highlighter-rouge">.tex</code> file. You can also download a <code class="language-plaintext highlighter-rouge">.tex</code> file containing this template <a href="https://raw.githubusercontent.com/SpeckhoferEnterprises/LaTeX_SublimeText/master/LaTeX_Template.tex">here</a>.</li>
+  <li>You can find a list of all snippets <a href="https://raw.githubusercontent.com/SpeckhoferEnterprises/LaTeX_SublimeText/master/SublimeTextSnippetsList.txt">here</a>.</li>
+</ul>
+
+<blockquote>
+  <p>Here are some examples of snippets that are replaced automatically while typing:</p>
+
+  <ul>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">mk</code> is replaced by <code class="language-plaintext highlighter-rouge">$...$</code> (math mode).</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">dm</code> is replaced by <code class="language-plaintext highlighter-rouge">\[ ... \]</code> with line breaks in between the square brackets (display-math mode).</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">&lt;=</code> is replaced by <code class="language-plaintext highlighter-rouge">\leq</code>, and <code class="language-plaintext highlighter-rouge">&gt;=</code> is replaced by <code class="language-plaintext highlighter-rouge">\geq</code>.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">sr</code> (which stands for “squared”) is replaced by <code class="language-plaintext highlighter-rouge">^2</code>, and <code class="language-plaintext highlighter-rouge">cb</code> is replaced by <code class="language-plaintext highlighter-rouge">^3</code> (“cubed”).</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">**</code> is replaced by <code class="language-plaintext highlighter-rouge">\cdot</code> and <code class="language-plaintext highlighter-rouge">xx</code> is replaced by <code class="language-plaintext highlighter-rouge">\times</code>.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">//</code> is replaced by <code class="language-plaintext highlighter-rouge">\frac{}{}</code>, the cursor jumps into the first curly brackets pair and you can use the <code class="language-plaintext highlighter-rouge">tab</code> key to jump into the second pair and to exit the brackets.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">iff</code> is replaced by <code class="language-plaintext highlighter-rouge">\iff</code>, <code class="language-plaintext highlighter-rouge">=&gt;</code> is replaced by <code class="language-plaintext highlighter-rouge">\implies</code> and <code class="language-plaintext highlighter-rouge">=&lt;</code> is replaced by <code class="language-plaintext highlighter-rouge">\impliedby</code>.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">bar</code> is replaced by <code class="language-plaintext highlighter-rouge">\bar{}</code> and the cursor jumps into the curly brackets pair (you can use <code class="language-plaintext highlighter-rouge">tab</code> to exit the brackets), <code class="language-plaintext highlighter-rouge">til</code> is replaced by <code class="language-plaintext highlighter-rouge">\tilde{}</code>, <code class="language-plaintext highlighter-rouge">wtil</code> is replaced by <code class="language-plaintext highlighter-rouge">\widetilde{}</code> and <code class="language-plaintext highlighter-rouge">wbar</code> is replaced by <code class="language-plaintext highlighter-rouge">\overline{}</code>.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">lr(</code> is replaced by <code class="language-plaintext highlighter-rouge">\left(  \right)</code> (and you can use <code class="language-plaintext highlighter-rouge">tab</code> to navigate), <code class="language-plaintext highlighter-rouge">norm</code> is replaced by <code class="language-plaintext highlighter-rouge">\|  \|</code> etc.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">NN</code> is replaced by <code class="language-plaintext highlighter-rouge">\N</code> (the set of natural numbers – this command is defined in <code class="language-plaintext highlighter-rouge">Template.sty</code>), <code class="language-plaintext highlighter-rouge">ZZ</code> is replaced by <code class="language-plaintext highlighter-rouge">\Z</code>, <code class="language-plaintext highlighter-rouge">QQ</code> is replaced by <code class="language-plaintext highlighter-rouge">\Q</code>, <code class="language-plaintext highlighter-rouge">RR</code> is replaced by <code class="language-plaintext highlighter-rouge">\R</code> etc.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">UU</code> is replaced by <code class="language-plaintext highlighter-rouge">\cup</code> (union), <code class="language-plaintext highlighter-rouge">Nn</code> is replaced by <code class="language-plaintext highlighter-rouge">\cap</code> (intersection), <code class="language-plaintext highlighter-rouge">ww</code> is replaced by <code class="language-plaintext highlighter-rouge">\wedge</code>, <code class="language-plaintext highlighter-rouge">vv</code> is replaced by <code class="language-plaintext highlighter-rouge">\vee</code>, <code class="language-plaintext highlighter-rouge">uuu</code> is replaced by <code class="language-plaintext highlighter-rouge">\bigcup</code>, <code class="language-plaintext highlighter-rouge">vvv</code> is replaced by <code class="language-plaintext highlighter-rouge">\bigvee</code> etc.</p>
+    </li>
+    <li>
+      <p>Greek letters: <code class="language-plaintext highlighter-rouge">.a</code> is replaced by <code class="language-plaintext highlighter-rouge">\alpha</code>, <code class="language-plaintext highlighter-rouge">.b</code> is replaced by <code class="language-plaintext highlighter-rouge">\beta</code>, <code class="language-plaintext highlighter-rouge">.e</code> is replaced by <code class="language-plaintext highlighter-rouge">\epsilon</code>, <code class="language-plaintext highlighter-rouge">..e</code> is replaced by <code class="language-plaintext highlighter-rouge">\varepsilon</code>, <code class="language-plaintext highlighter-rouge">.G</code> is replaced by <code class="language-plaintext highlighter-rouge">\Gamma</code> etc.</p>
+    </li>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">AA</code> is replaced by <code class="language-plaintext highlighter-rouge">\forall</code>, <code class="language-plaintext highlighter-rouge">EE</code> is replaced by <code class="language-plaintext highlighter-rouge">\exists</code>.</p>
+    </li>
+  </ul>
+
+  <p>Thus, you can type for example <code class="language-plaintext highlighter-rouge">AA..e&gt;0EEn_0innNNAAn&gt;=n_0: normx_n - x[tab]&lt;..e</code> (where <code class="language-plaintext highlighter-rouge">[tab]</code> stands for pressing the <code class="language-plaintext highlighter-rouge">tab</code> key), and without pressing any other keys, this is replaced by</p>
+
+  <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">\forall</span> <span class="k">\varepsilon</span> &gt; 0 <span class="k">\exists</span> n<span class="p">_</span>0<span class="k">\in</span> <span class="k">\N\forall</span> n<span class="k">\geq</span> n<span class="p">_</span>0: <span class="k">\|</span> x<span class="p">_</span>n - x <span class="k">\|</span>&lt;<span class="k">\varepsilon</span>
+</pre></td></tr></tbody></table></code></pre></div>  </div>
+
+  <p>Thus, a lot of time can be saved by remembering and using these snippets!</p>
+</blockquote>
+
+<h2 id="step-4-set-up-vim-navigation">Step 4: Set up Vim navigation</h2>
+
+<p>Another system that can speed up writing in general is Vim navigation in Sublime Text. Actually, <a href="https://www.vim.org/">Vim</a> is a text editor on its own, and there are keyboard shortcuts for navigation, copying and pasting text, selecting parts of a text (or a whole line), jumping to the beginning or end of a line or file etc. However, there is also a package for Sublime Text called “Vintageous”, which enables you to also use these shortcuts in Sublime Text.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>Simply open Package Control in Sublime Text and install the package “Vintageous”.</p>
+
+<h3 id="a-short-introduction-to-vim">A short introduction to Vim</h3>
+
+<h4 id="command-mode">Command mode</h4>
+
+<p>By default, you are in “command mode”. It is called “command mode” because you can type commands after pressing <code class="language-plaintext highlighter-rouge">:</code> (which will open a small command line). For example, by typing <code class="language-plaintext highlighter-rouge">:w</code> and pressing <code class="language-plaintext highlighter-rouge">Enter</code>, you can save a file. You can close a file with <code class="language-plaintext highlighter-rouge">:q</code>, save and close using <code class="language-plaintext highlighter-rouge">:wq</code> and close without saving with <code class="language-plaintext highlighter-rouge">:q!</code>. (But of course, in Sublime Text, you can still use <code class="language-plaintext highlighter-rouge">Ctrl + S</code> in order to save a file.) Furthermore, command mode you can navigate in your file using the <code class="language-plaintext highlighter-rouge">h</code>, <code class="language-plaintext highlighter-rouge">j</code>, <code class="language-plaintext highlighter-rouge">k</code> and <code class="language-plaintext highlighter-rouge">l</code> keys instead of the arrow keys. Thus, you never have to move your hand away from their “default” position on the keyboard in order to use the arrow keys or the mouse, which saves much time!</p>
+
+<p>There most important commands are:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">j</code> = move cursor down by one line.</li>
+  <li><code class="language-plaintext highlighter-rouge">k</code> = move cursor up by one line.</li>
+  <li><code class="language-plaintext highlighter-rouge">h</code> = move cursor left by one position.</li>
+  <li><code class="language-plaintext highlighter-rouge">l</code> = move cursor right by one position.</li>
+  <li><code class="language-plaintext highlighter-rouge">w</code> = move cursor to the beginning of the next word.</li>
+  <li><code class="language-plaintext highlighter-rouge">b</code> = move cursor to the beginning of the previous word.</li>
+  <li><code class="language-plaintext highlighter-rouge">[number n] + [one of the previous commands]</code> = execute this command <code class="language-plaintext highlighter-rouge">n</code>-times, e.g. move cursor <code class="language-plaintext highlighter-rouge">n</code> words to the right.</li>
+  <li><code class="language-plaintext highlighter-rouge">0</code> = move cursor to the beginning of the line.</li>
+  <li><code class="language-plaintext highlighter-rouge">$</code> = move cursor to the end of the line.</li>
+  <li><code class="language-plaintext highlighter-rouge">gg</code> = jump to the beginning of the file.</li>
+  <li><code class="language-plaintext highlighter-rouge">Shift + G</code> = jump to the end of the file.</li>
+  <li><code class="language-plaintext highlighter-rouge">zz</code> = center view at the current line.</li>
+  <li><code class="language-plaintext highlighter-rouge">zt</code> = change view so that the current line is at the top.</li>
+</ul>
+
+<h4 id="insert-mode">Insert mode</h4>
+
+<p>By pressing the <code class="language-plaintext highlighter-rouge">i</code> key, you can enter the “insert mode”, in which you can write as usual. The text that you write will be inserted <em>before</em> the current cursor position. You can press <code class="language-plaintext highlighter-rouge">Esc</code> to return to command mode. In my key bindings for Sublime Text, you will also find the commonly used combinations <code class="language-plaintext highlighter-rouge">jk</code> and <code class="language-plaintext highlighter-rouge">kj</code> to return to command mode. Since the order does not matter, you can simply press <code class="language-plaintext highlighter-rouge">j</code> and <code class="language-plaintext highlighter-rouge">k</code> at the same time to return to command mode. Apart from <code class="language-plaintext highlighter-rouge">i</code>, you can also press the <code class="language-plaintext highlighter-rouge">a</code> key to enter insert mode, but then the text that you write will be inserted <em>after</em> the current cursor position. Finally, you can press <code class="language-plaintext highlighter-rouge">Shift + I</code> or <code class="language-plaintext highlighter-rouge">Shift + A</code> to enter insert mode and append text at the beginning or at the end of the line, respectively, and you can press <code class="language-plaintext highlighter-rouge">o</code> or <code class="language-plaintext highlighter-rouge">Shift + O</code> to open a new line below or above the cursor, respectively, and enter insert mode.</p>
+
+<h4 id="visual-mode">Visual mode</h4>
+
+<p>If you press <code class="language-plaintext highlighter-rouge">v</code> in command mode, you will enter the “visual mode”. Here you can select parts of the text. The selection begins at the position, where you entered visual mode, and you can edit the end of the selection by navigating like in command mode. You can copy the selected text by pressing <code class="language-plaintext highlighter-rouge">y</code>, or you can cut it by pressing <code class="language-plaintext highlighter-rouge">x</code>. Then you will return to command mode, and by pressing <code class="language-plaintext highlighter-rouge">p</code> or <code class="language-plaintext highlighter-rouge">Shift + P</code>, you can paste the text after or before the cursor position, respectively. Finally, you can undo the last change by pressing <code class="language-plaintext highlighter-rouge">u</code> in command mode.</p>
+
+<p>You can find a more detailed explanation of Vim <a href="https://www.tutorialspoint.com/vim/vim_quick_guide.htm">here</a>.</p>
+:ET

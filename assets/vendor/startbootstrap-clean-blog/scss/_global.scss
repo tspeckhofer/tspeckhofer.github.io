@@ -1,0 +1,139 @@
+// Global styling for this template
+body {
+	font-size: 22px;
+	color: rgb(24,24,42);
+}
+
+p {
+	line-height: 1.5;
+	margin: $spacer 0 $spacer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 800;
+}
+h1 {
+	font-size: 2.25em;
+	line-height: 1.2;
+	border-bottom: 1px solid #eee;
+}
+h2 {
+	font-size: 1.75em;
+	line-height: 1.225;
+	border-bottom: 1px solid #eee;
+}
+h3 {
+	font-size: 1.5em;
+	line-height: 1.43;
+}
+h4 {
+	font-size: 1.25em;
+}
+h5 {
+	font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+	color: #777;
+}
+
+a {
+	color: rgb(6,69,173);
+	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		color: rgb(6,69,173);
+		text-decoration: underline !important;
+	}
+	&:link {
+		color: rgb(6,69,173);
+		text-decoration: none;
+	}
+	&:visited {
+		color: rgb(11,0,128);
+		text-decoration: none;
+	}
+	&:active {
+		color: orange;
+		text-decoration: underline;
+	}
+}
+
+blockquote {
+	border-left: 4px solid #dfe2e5;
+	padding: 0 15px;
+	color: #777777;
+}
+
+.section-heading {
+	font-size: 36px;
+	font-weight: 700;
+	margin-top: 60px;
+}
+
+.caption {
+	font-size: 14px;
+	font-style: italic;
+	display: block;
+	margin: 0;
+	padding: 10px;
+	text-align: center;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+::-moz-selection {
+	color: $primary;
+	background: lightskyblue;
+	text-shadow: none;
+}
+
+::selection {
+	color: $primary;
+	background: lightskyblue;
+	text-shadow: none;
+}
+
+img::selection {
+	color: $white;
+	background: transparent;
+}
+
+img::-moz-selection {
+	color: $white;
+	background: transparent;
+}
+
+// Table of contents:
+#markdown-toc {
+	list-style-type: none;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 10px;
+}
+#markdown-toc * {
+	list-style-type: none;
+}
+
+// Task lists:
+.task-list {
+	padding-left: 8px;
+}
+.task-list-item {
+	list-style-type: none;
+}
+.task-list-item-checkbox {
+	margin-right: 18px;
+	vertical-align: middle;
+	pointer-events: none
+}
+
+.MathJax {
+	font-size: inherit !important;
+}
