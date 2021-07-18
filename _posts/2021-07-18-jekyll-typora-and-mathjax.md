@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Jekyll, Typora and MathJax"
-subtitle: "How this page was created."
+subtitle: "A tutorial that explains how this page was created."
 background: "/img/background.jpg"
 typora-root-url: ".."
 ---
@@ -240,4 +240,3 @@ Finally, add the following lines to `_global.scss` or `main.scss` in order to ge
 ~~~
 
 Now you can write e.g. `$\int f(x)\,\mathrm{d}x$`, and it will be displayed as $\int f(x)\,\mathrm{d}x$ (and you can also use other MathJax features, such as numbered equations, cross-referencing etc.)
-
