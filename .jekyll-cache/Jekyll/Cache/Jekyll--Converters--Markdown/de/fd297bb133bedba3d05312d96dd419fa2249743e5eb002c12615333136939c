@@ -1,4 +1,4 @@
-I"Àp<h1 id="jekyll-typora-and-mathjax">Jekyll, Typora and MathJax</h1>
+I"¿p<h1 id="jekyll-typora-and-mathjax">Jekyll, Typora and MathJax</h1>
 
 <p>The purpose of this post is to explain how this whole website was created. The setup is based on <a href="https://www.youtube.com/watch?v=wCOInE7-E0I">https://www.youtube.com/watch?v=wCOInE7-E0I</a>. I recommend using <a href="https://pages.github.com/">GitHub Pages</a> to host your Jekyll page, but of course, there are also other options. For simplicity, I will assume that you want to create your Jekyll website in a folder called <code class="language-plaintext highlighter-rouge">[...].github.io</code> (e.g. after cloning your <code class="language-plaintext highlighter-rouge">[...].github.io</code> repository to create a local copy on your computer).</p>
 
@@ -344,5 +344,4 @@ print("hello world")
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>Now you can write e.g. <code class="language-plaintext highlighter-rouge">$\int f(x)\,\mathrm{d}x$</code>, and it will be displayed as $\int f(x)\,\mathrm{d}x$ (and you can also use other MathJax features, such as numbered equations, cross-referencing etc.)</p>
-
 :ET

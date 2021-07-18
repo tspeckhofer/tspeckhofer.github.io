@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Jekyll, Typora and MathJax"
-subtitle: "A tutorial that explains how this page was created."
+subtitle: "A tutorial that explains how this website was created."
 background: "/img/background.jpg"
 typora-root-url: ".."
 ---
@@ -24,7 +24,7 @@ The purpose of this post is to explain how this whole website was created. The s
 
 - Now you have two options to make a Jekyll blog/website:
   1. Go to [this page](https://jekyllthemes.io/theme/startbootstrap-clean-blog-jekyll) and click on "Get Clean Blog on GitHub". This leads to [a GitHub repository](https://github.com/StartBootstrap/startbootstrap-clean-blog-jekyll). Clone/download everything to your `[...].github.io` folder. You can also use another template, but then some file and folder names may be different from the names in these instructions.
-  2. Simply clone or download [my repository](https://github.com/SpeckhoferEnterprises/SpeckhoferEnterprises.github.io) containing the website you are currently reading.
+  2. Simply clone or download [my repository](https://github.com/tspeckhofer/tspeckhofer.github.io) containing the website you are currently reading.
 
 - Edit `_config.yml` to configure the general settings for the blog. You can edit your website e.g. in [Visual Studio Code](https://code.visualstudio.com/): If you click on `File - Open Folder` and choose the whole `[...].github.io` folder in VS Code, you will have a clearly laid out file tree and you will be able to edit all the different files in one editor.
 
@@ -154,7 +154,7 @@ instead. It is also a good idea to go to `File - Preferences... - Image` in Typo
 
 ## Customization
 
-**Note: If you have cloned [my repository](https://github.com/SpeckhoferEnterprises/SpeckhoferEnterprises.github.io), you will not need the steps described in this chapter -- everything should work out of the box. Nevertheless, I recommend reading them in order to find out how to customize all the settings yourself!**
+**Note: If you have cloned [my repository](https://github.com/tspeckhofer/tspeckhofer.github.io), you will not need the steps described in this chapter -- everything should work out of the box. Nevertheless, I recommend reading them in order to find out how to customize all the settings yourself!**
 
 Generally, you can edit all the SCSS files in the `assets` folder or copy my files. I have modified e.g. the file `assets/vendor/startbootstrap-clean-blog/scss/variables/_typography.scss` in order to change the fonts and the file `assets/vendor/bootstrap/scss/_tables.scss` in order to change the style of tables.
 
