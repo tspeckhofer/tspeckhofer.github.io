@@ -6,7 +6,7 @@ background: "/img/background.jpg"
 typora-root-url: ".."
 ---
 
-# LaTeX and Sublime Text
+# $\LaTeX$ and Sublime Text
 
 This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](https://www.sublimetext.com/) and how to set up code snippets to write faster. For a general introduction to $\LaTeX$, see e.g. [this tutorial by Overleaf](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes). This setup is inspired by [this article by Gilles Castel](https://castel.dev/post/lecture-notes-1/), where a similar setup for Linux is described (using Vim as a text editor). On Windows, however, it is easier to set everything up in Sublime Text.
 
