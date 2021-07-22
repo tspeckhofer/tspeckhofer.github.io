@@ -18,7 +18,7 @@ This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](htt
 {:toc}
 ---
 
-## Step 1: Installing the required software
+## Step 1: Install the required software
 
 - Install a $\LaTeX$ distribution. The most common ones are:
 
