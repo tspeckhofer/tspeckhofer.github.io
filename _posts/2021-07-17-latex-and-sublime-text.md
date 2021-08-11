@@ -8,7 +8,7 @@ typora-root-url: ".."
 
 # $\LaTeX$ and Sublime Text
 
-This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](https://www.sublimetext.com/) and how to set up code snippets to write faster. For a general introduction to $\LaTeX$, see e.g. [this tutorial by Overleaf](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes). This setup is inspired by [this article by Gilles Castel](https://castel.dev/post/lecture-notes-1/), where a similar setup for Linux is described (using Vim as a text editor). On Windows, however, it is easier to set everything up in Sublime Text.
+This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](https://www.sublimetext.com/) and how to set up code snippets to write faster. For a general introduction to $\LaTeX$​​​​​​, see e.g. [this tutorial by Overleaf](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes). This setup is inspired by [this article by Gilles Castel](https://castel.dev/post/lecture-notes-1/), where a similar setup for Linux is described (using Vim as a text editor). On Windows, however, it is easier to set everything up in Sublime Text. _Remark:_ I have only tested this on Windows, but it should also work on Linux and macOS -- you just have to choose the correct PDF viewer in Step 1.
 
 <center><img src="/img/2021-07-17-latex-and-sublime-text/LaTeX_Sublime_Text.png" width="100%"/></center>
 
@@ -31,7 +31,7 @@ This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](htt
 
 - Install [Sublime Text](https://www.sublimetext.com/3).
 
-- Install [Sumatra PDF](https://www.sumatrapdfreader.org/download-free-pdf-viewer.html). This is a PDF viewer that automatically refreshes when the currently opened file is overwritten on the hard drive. (Many other PDF viewers do not even allow overwriting files that are currently opened!)
+- On Windows: Install [Sumatra PDF](https://www.sumatrapdfreader.org/download-free-pdf-viewer.html). This is a PDF that automatically refreshes when the currently opened file is overwritten on the hard drive. (Many other PDF viewers do not even allow overwriting files that are currently opened!) If you are on Linux, you can use Zathura (`sudo apt-get install -y zathura`), and on macOS, you can use [Skim.app](https://skim-app.sourceforge.io/). [Here](https://latextools.readthedocs.io/en/latest/available-viewers/) you can find a list of all PDF viewers that can be used.
 
 ## Step 2: Set up Sublime Text as a $\LaTeX$ editor
 
@@ -54,12 +54,12 @@ This tutorial explains how to use $\LaTeX$ in the text editor [Sublime Text](htt
 
 > Some further tips:
 >
-> - Using `Windows + left/right arrow key`, you can position the currently active window in the left/right half of your screen, so you can see the $\LaTeX$ source code and the PDF output at the same time (like in the first screenshot). By double-clicking on a line in the PDF file, Sublime text automatically jumps to the corresponding line in the `.tex` file (this is called inverse search).
+> - Using `Windows key + left/right arrow`, you can position the currently active window in the left/right half of your screen, so you can see the $\LaTeX$ source code and the PDF output at the same time (like in the first screenshot). By double-clicking on a line in the PDF file, Sublime text automatically jumps to the corresponding line in the `.tex` file (this is called inverse search).
 > - After compiling, you can press `Ctrl + L` and then immediately `Backspace` in order to clean the folder that contains the `.tex` file and delete all temporary files.
 
 ## Step 3: Set up snippets
 
-This functionality is the main reason why I use Sublime Text as my $\LaTeX$ editor: You can define your own code snippets, which are replaced by $\LaTeX$ commands automatically while you are typing (without even having to press an extra button!). On Linux, this [can be done directly in Vim](https://castel.dev/post/lecture-notes-1/), but on Windows it is more complicated to set this up in Vim (and I could not get it to work).
+This functionality is the main reason why I use Sublime Text as my $\LaTeX$ editor: You can define your own code snippets, which are replaced by $\LaTeX$​ commands automatically while you are typing (without even having to press an extra button!). On Linux, this [can be done directly in Vim](https://castel.dev/post/lecture-notes-1/), but on Windows it is more complicated to set this up in Vim (and I could not get it to work). In Sublime Text, however, it is straightforward:
 
 - In order to use snippets, you have to go to `Preferences - Key Bindings` in Sublime Text and paste the contents of [this file](https://raw.githubusercontent.com/tspeckhofer/LaTeX_SublimeText/master/SublimeTextKeymap.txt) into the right column.
 - If you do not use Vim navigation using the "Vintageous" package (see below), you can delete the first two snippets.
