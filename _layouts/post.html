@@ -5,76 +5,138 @@ layout: default
 <!-- Page Header -->
 {% if page.background %}
 <header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
-  {% else %}
-  <header class="masthead">
-    {% endif %}
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-10 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1>{{ page.title }}</h1>
-            {% if page.subtitle %}
-            <h2 class="subheading">{{ page.subtitle }}</h2>
-            {% endif %}
-            <span class="meta">Posted by
-              <a href="/">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
-              on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
-              content=page.content %}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+ {% else %}
+ <header class="masthead">
+	{% endif %}
+	<div class="overlay"></div>
+	<div class="container">
+	 <div class="row">
+		<div class="col-lg-10 col-md-10 mx-auto">
+		 <div class="post-heading">
+			<h1>{{ page.title }}</h1>
+			{% if page.subtitle %}
+			<h2 class="subheading">{{ page.subtitle }}</h2>
+			{% endif %}
+			<span class="meta">Posted by
+			 <a href="/">{% if page.author %}{{ page.author }}{% else %}{{ site.author }}{% endif %}</a>
+			 on {{ page.date | date: '%B %d, %Y' }} &middot; {% include read_time.html
+			 content=page.content %}
+			</span>
+		 </div>
+		</div>
+	 </div>
+	</div>
+ </header>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 col-md-10	 mx-auto">
+ <div class="container">
+	<div class="row">
+	 <div class="col-lg-10 col-md-10	 mx-auto">
 
-        {{ content }}
+		{{ content }}
 
-        <hr>
-        <script src="https://utteranc.es/client.js"
-                repo="tspeckhofer/tspeckhofer.github.io"
-                issue-term="pathname"
-                theme="github-light"
-                crossorigin="anonymous"
-                async>
-        </script>
-        <hr>
-        <style type="text/css">
-        .utterances {
-            margin: 0 !important;
-            max-width: 100%;
-            height: auto;
-        }
-        </style>
+		<hr>
+		<script src="https://utteranc.es/client.js"
+				repo="tspeckhofer/tspeckhofer.github.io"
+				issue-term="pathname"
+				theme="github-light"
+				crossorigin="anonymous"
+				async>
+		</script>
+		<hr>
+		<style type="text/css">
+		.utterances {
+			margin: 0 !important;
+			max-width: 100%;
+			height: auto;
+		}
+		</style>
 
-        <div class="clearfix">
+		<div class="clearfix">
 
-          {% if page.previous.url %}
-          <a class="btn btn-primary float-left" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
-              Post</span></a>
-          {% endif %}
-          {% if page.next.url %}
-          <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
-              Post</span> &rarr;</a>
-          {% endif %}
-        </div>
+		 {% if page.previous.url %}
+		 <a class="btn btn-primary float-left" href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title }}">&larr; Previous<span class="d-none d-md-inline">
+			 Post</span></a>
+		 {% endif %}
+		 {% if page.next.url %}
+		 <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
+			 Post</span> &rarr;</a>
+		 {% endif %}
+		</div>
 
 		<script>
 			document
-			  .querySelector('.post-content') // your selector for the post body
-			  .querySelectorAll('h1,h2,h3,h4,h5,h6')
-			  .forEach(function(heading) {
+			 .querySelector('.post-content') // your selector for the post body
+			 .querySelectorAll('h1,h2,h3,h4,h5,h6')
+			 .forEach(function(heading) {
 				if (heading.id) {
-				  heading.innerHTML =
+				 heading.innerHTML =
 					'<a href="#' + heading.id + '">' + heading.innerText + '<\/a>';
 				}
-			  });
-		  </script>
+			 });
+		 </script>
 
-      </div>
-    </div>
-  </div>
+	 </div>
+	</div>
+ </div>
+
+<style>
+
+/* The following code is based on https://gist.github.com/aleung/e8629837ee751aa7806badd1dad817a1 */
+
+/**************************************
+ * Header Counters in Content
+ **************************************/
+
+/** initialize css counter */
+
+h1:not(header *) {
+	counter-reset: h2;
+}
+h2:not(header *) {
+	counter-reset: h3;
+}
+h3:not(header *) {
+	counter-reset: h4;
+}
+h4:not(header *) {
+	counter-reset: h5;
+}
+h5:not(header *) {
+	counter-reset: h6;
+}
+
+/** put counter result into headings */
+h1:not(header *):before {
+	counter-increment: h1;
+}
+h2:not(header *):before {
+	counter-increment: h2;
+	content: counter(h2) ". ";
+}
+h3:not(header *):before, h3:not(header *).md-focus.md-heading:before { /*override the default style for focused headings */
+	counter-increment: h3;
+	content: counter(h2) "." counter(h3) ". ";
+}
+h4:not(header *):before, h4:not(header *).md-focus.md-heading:before {
+	counter-increment: h4;
+	content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+h5:not(header *):before, h5:not(header *).md-focus.md-heading:before {
+	counter-increment: h5;
+	content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
+}
+h6:not(header *):before, h6:not(header *).md-focus.md-heading:before {
+	counter-increment: h6;
+	content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
+}
+
+#markdown-toc > * ul {
+	list-style-type: none;
+	counter-reset: css-counters 0;
+}
+ 
+#markdown-toc > * li:before {
+	counter-increment: css-counters;
+	content: counters(css-counters, ".") ". ";
+ }
+</style>
