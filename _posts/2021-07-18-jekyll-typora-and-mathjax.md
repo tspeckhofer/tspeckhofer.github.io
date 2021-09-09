@@ -18,7 +18,7 @@ The purpose of this post is to explain how this whole website was created. The s
 {:toc}
 ---
 
-## Install Jekyll and make a Jekyll blog/website
+## Install Jekyll and mak a Jekyll blog/website
 
 - Go to [this page](https://jekyllrb.com/docs/installation/windows/) and follow the instructions to install Jekyll.
 
@@ -43,14 +43,14 @@ The purpose of this post is to explain how this whole website was created. The s
 
 ## Markdown
 
-[Markdown](https://en.wikipedia.org/wiki/Markdown) is a markup language that is used to create formatted text in a plain-text editor. This means that you can simply write plain text files (which are usually saved with the extension `.md`) containing special syntax for formatting. It is used to write websites, blog posts, documentations and even books (and of course, everything on this page was written in Markdown). Markdown files can be exported to other formats like HTML or PDF. But unlike HTML, you do not need "ugly" tags like `<h1>Heading</h1>`, and so the text will also be clearly readable in any plain text editor. Here you can see an overview of the most important Markdown syntax (ignore the line breaks after line 7, 8 and 32, 33 -- they are just there so that everything can be displayed at once in the code block):
+[Markdown](https://en.wikipedia.org/wiki/Markdown) is a markup language that is used to create formatted text in a plain-text editor. This means that you can simply write plain text files (which are usually saved with the extension `.md`) containing special syntax for formatting. It is used to write websites, blog posts, documentations and even books (and of course, everything on this page was written in Markdown). Markdown files can be exported to other formats like HTML or PDF. But unlike HTML, you do not need "ugly" tags like `<h1>Heading</h1>`, and so the text will also be clearly readable in any plain text editor. Here you can see an overview of the most important Markdown syntax (ignore the line breaks after line 7, 8 and 35, 36 -- they are just there so that everything can be displayed at once in the code block):
 
 ~~~markdown
-# This is a level 1 heading
+# This is a level 1 heading.
 
-## This is a level 2 heading
+## This is a level 2 heading ...
 
-### This is a level 3 heading ...
+###### This is a level 6 heading.
 
 This is a normal paragraph. You can write **bold** or
 _italic_ (or *italic*) text, and it is also possible to write
@@ -61,12 +61,13 @@ _italic_ (or *italic*) text, and it is also possible to write
 
 and numbered lists:
 
-1. another item
-2. You can always use '1.', so the order can be changed easily:
-	1. first item (displayed as: "1. first item")
-	1. second item (displayed as: "2. second item")
+1. an item
+2. You can always use the number 1 for automatic numbering:
+	1. item one (will be displayed as: "1. item one")
+	1. item two (will be displayed as: "2. item two")
+	1. item three (will be displayed as: "2. item three")
 
-> This is a block quote. This is a link: [text](url)
+> This is a block quote. This is a link: [link text](some-url.com)
 
 The following will be displayed as a horizontal line:
 
@@ -77,7 +78,7 @@ You can make tables (better use a Markdown editor for that):
 | Column 1 | Column 2 | Column 3 |
 | -------- | -------- | -------- |
 | a        | b        | c        |
-| This     | is       | a table. |
+| This     | is a     | table. |
 
 If you are using GitHub Flavored Markdown (which will be
 possible in this setup), you can also use fenced code blocks
@@ -89,17 +90,17 @@ print("hello world")
 
 ~~~
 
-For more details and commands in Markdown, read [this page](https://guides.github.com/features/mastering-markdown/), [this page](https://www.markdownguide.org/basic-syntax/) and [this page](https://support.typora.io/Markdown-Reference/). You can also try out the online Markdown editors [Editor.md](https://pandao.github.io/editor.md/en.html) and [Dillinger](https://dillinger.io/).
+For more details and commands in Markdown, you can read [this page](https://guides.github.com/features/mastering-markdown/), [this page](https://www.markdownguide.org/basic-syntax/) and [this page](https://support.typora.io/Markdown-Reference/). You can also try out the online Markdown editors [Editor.md](https://pandao.github.io/editor.md/en.html) and [Dillinger](https://dillinger.io/).
 
 ## Typora
 
 [Typora](https://typora.io/) is a very feature-rich and easy-to-use Markdown editor (and it is free during beta). You can download it [here](https://typora.io/#download). It is a "what you see is what you get" editor that can display all the elements described above (i.e. headings, links, tables, code blocks etc.), but there is also a "Source Code Mode". If you write `[TOC]`, Typora will generate a table of contents with clickable links automatically! There are also keyboard shortcuts -- you can press e.g. `Ctrl` and `+` or `-` in order to change the level of a heading -- and it is also very easy to make tables in Typora. Typora also supports $\LaTeX$ inline math and math blocks, and you can export to HTML, PDF and many other formats. Later we will discuss how to insert images (which will be copied to the correct folder in your Jekyll page automatically). Finally, Typora also supports normal HTML tags.
 
-I suggest that you go to `File - Preferences` (or pressing `Ctrl + comma`) and have a look at all the settings. Under `Appearence`, you can click on `Open Theme Folder` and paste the file [mytheme.css](/files/2021-07-18-jekyll-typora-and-mathjax/mytheme.css) into the theme folder. Then you can click on `Themes` in Typora's menu bar and choose the theme "Mytheme" in order to get basically the same formatting in Typora as in my Jekyll page (using e.g. the Palatino font).
+I suggest that you go to `File - Preferences` (or pressing `Ctrl + comma`) and have a look at all the settings. Under `Appearence`, you can click on `Open Theme Folder` and paste the file [mytheme_black.css](/files/2021-07-18-jekyll-typora-and-mathjax/mytheme_black.css) or [mytheme_blue.css](/files/2021-07-18-jekyll-typora-and-mathjax/mytheme_blue.css) into the theme folder. Then you can click on `Themes` in Typora's menu bar and choose the theme "Mytheme Black" or "Mytheme Blue" in order to get basically the same formatting in Typora as in my Jekyll page (e.g. using the Palatino font).
 
 ## Using Markdown files in Jekyll
 
-Jekyll generates a blog using all text files of the form `YEAR-MONTH-DAY-title.md` (or `.html`) in the folder `[...].github.io/_posts` (but files with a future date will not be displayed on the page before that date). In order to use `.md` files for a Jekyll blog, they have to start with a YAML front matter block that sets the layout and other meta data, for example:
+Jekyll generates a blog using all text files of the form `YEAR-MONTH-DAY-title.md` (or `.html`) in the folder `[...].github.io/_posts`. Files with a future date will not be displayed on the page before that date. In order to use `.md` files for a Jekyll blog, they have to start with a YAML front matter block that sets the layout and other meta data, for example:
 
 ~~~yaml
 ---

@@ -12,9 +12,10 @@ pre code {
 }
   
 pre {
+	tab-size: 4;
 	line-height: 1.5em;
 	border-radius: 0.25rem;
-	padding: 0.59375rem;
+	padding: 0.5em;
 }
 .highlight pre {
 	color: black;
@@ -26,7 +27,7 @@ pre {
 	background-image: linear-gradient(
 	  rgba(0,0,0,0.03), rgba(0,0,0,0.03) 1.5em, rgba(0,0,0,0.02) 1.5em, rgba(0,0,0,0.02) 3em);
 	background-size: auto 3em;
-	background-position-y: 0.75em;
+	background-position-y: 1em;
 	border: 1px solid rgba(0,0,0,0.1);
 	border-left: 0.4375rem solid rgba(0,0,0,0.2);
 }

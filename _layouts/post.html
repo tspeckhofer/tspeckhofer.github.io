@@ -35,6 +35,21 @@ layout: default
         {{ content }}
 
         <hr>
+        <script src="https://utteranc.es/client.js"
+                repo="tspeckhofer/tspeckhofer.github.io"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+        </script>
+        <hr>
+        <style type="text/css">
+        .utterances {
+            margin: 0 !important;
+            max-width: 100%;
+            height: auto;
+        }
+        </style>
 
         <div class="clearfix">
 
@@ -46,8 +61,19 @@ layout: default
           <a class="btn btn-primary float-right" href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title }}">Next<span class="d-none d-md-inline">
               Post</span> &rarr;</a>
           {% endif %}
-
         </div>
+
+		<script>
+			document
+			  .querySelector('.post-content') // your selector for the post body
+			  .querySelectorAll('h1,h2,h3,h4,h5,h6')
+			  .forEach(function(heading) {
+				if (heading.id) {
+				  heading.innerHTML =
+					'<a href="#' + heading.id + '">' + heading.innerText + '<\/a>';
+				}
+			  });
+		  </script>
 
       </div>
     </div>

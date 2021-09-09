@@ -1,6 +1,6 @@
 // Global styling for this template
 body {
-	font-size: 22px;
+	font-size: 20px;
 	color: rgb(24,24,42);
 }
 
@@ -137,3 +137,77 @@ img::-moz-selection {
 .MathJax {
 	font-size: inherit !important;
 }
+
+
+/* The following code is based on https://gist.github.com/aleung/e8629837ee751aa7806badd1dad817a1 */
+
+/**************************************
+ * Header Counters in Content
+ **************************************/
+
+/** initialize css counter */
+#write {
+    counter-reset: h1;
+}
+
+h1 {
+    counter-reset: h2;
+}
+
+h2 {
+    counter-reset: h3;
+}
+
+h3 {
+    counter-reset: h4;
+}
+
+h4 {
+    counter-reset: h5;
+}
+
+h5 {
+    counter-reset: h6;
+}
+
+/** put counter result into headings */
+h1:before {
+    counter-increment: h1;
+}
+
+h2:before {
+    counter-increment: h2;
+    content: counter(h2) ". ";
+}
+
+h3:before, h3.md-focus.md-heading:before { /*override the default style for focused headings */
+    counter-increment: h3;
+    content: counter(h2) "." counter(h3) ". ";
+}
+
+h4:before, h4.md-focus.md-heading:before {
+    counter-increment: h4;
+    content: counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+
+h5:before, h5.md-focus.md-heading:before {
+    counter-increment: h5;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) ". ";
+}
+
+h6:before, h6.md-focus.md-heading:before {
+    counter-increment: h6;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "." counter(h6) ". ";
+}
+
+
+#markdown-toc > * ul {
+	list-style-type: none;
+	counter-reset: css-counters 0;
+}
+  
+#markdown-toc > * li:before {
+	counter-increment: css-counters;
+	content: counters(css-counters, ".") ". ";
+ }
+  
