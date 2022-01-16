@@ -83,7 +83,5 @@ DEPENDENCIES
   wdm (~> 0.1.0)
   webrick (~> 1.7)
 
-spec.add_dependency "bundler", ">= 2.2.33"
-
 BUNDLED WITH
    2.2.24
